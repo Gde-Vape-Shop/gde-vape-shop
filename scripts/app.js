@@ -27,7 +27,9 @@ const nextButtons = document.querySelectorAll(".nextButton");
 const backButtons = document.querySelectorAll(".backButton");
 
 const startButton = document.getElementById("startOrder");
+const addMoreLiquidButton =
 
+document.getElementById("addMoreLiquidButton")
 const nicotineCards = document.querySelectorAll("[data-base]");
 
 const volumeCards = document.querySelectorAll("[data-volume]");
@@ -127,7 +129,17 @@ if(startButton){
     });
 
 }
+if(addMoreLiquidButton){
 
+    addMoreLiquidButton.addEventListener("click",()=>{
+
+        order.currentLiquid = {};
+
+        showScreen(1);
+
+    });
+
+}
 nextButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
