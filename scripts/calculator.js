@@ -167,3 +167,94 @@ function calculateCurrentLiquid(){
     return liquid.price;
 
 }
+/* ===============================
+
+   TOTAL PRICE
+
+================================= */
+
+function updateTotalPrice(){
+
+    let total = 0;
+
+    order.liquids.forEach(liquid=>{
+
+        total += liquid.price;
+
+    });
+
+    order.totalPrice = total;
+
+    return total;
+
+}
+
+/* ===============================
+
+   GIFT PROGRESS
+
+================================= */
+
+function giftProgress(){
+
+    const count = order.liquids.length;
+
+    const left = 4 - (count % 5);
+
+    if(left===5){
+
+        return 0;
+
+    }
+
+    return left;
+
+}
+
+/* ===============================
+
+   ADD LIQUID
+
+================================= */
+
+function addLiquidToOrder(){
+
+    const liquid = JSON.parse(
+
+        JSON.stringify(order.currentLiquid)
+
+    );
+
+    order.liquids.push(liquid);
+
+    updateTotalPrice();
+
+}
+
+/* ===============================
+
+   REMOVE LIQUID
+
+================================= */
+
+function removeLiquid(index){
+
+    order.liquids.splice(index,1);
+
+    updateTotalPrice();
+
+}
+
+/* ===============================
+
+   CLEAR ORDER
+
+================================= */
+
+function clearOrder(){
+
+    order.liquids=[];
+
+    order.totalPrice=0;
+
+}
