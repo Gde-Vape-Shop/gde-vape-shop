@@ -800,7 +800,11 @@ document.getElementById("giftButton");
 
 if(giftButton){
 
-    if(order.liquids.length>=4 && !order.giftLiquid){
+    const hasGift =
+
+    order.liquids.some(liquid=>liquid.isGift);
+
+    if(order.liquids.length>=4 && !hasGift){
 
         giftButton.classList.remove("hidden");
 
