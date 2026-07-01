@@ -471,3 +471,40 @@ shopCards.forEach(card=>{
     });
 
 });
+/* =======================================================
+
+   ОФОРМЛЕННЯ ЗАМОВЛЕННЯ
+
+======================================================= */
+
+const finishOrderButton =
+
+document.getElementById("finishOrder");
+
+if(finishOrderButton){
+
+    finishOrderButton.addEventListener("click",()=>{
+
+        order.customer.name =
+
+        document.getElementById("customerName").value;
+
+        order.customer.phone =
+
+        document.getElementById("customerPhone").value;
+
+        order.customer.telegram =
+
+        document.getElementById("customerTelegram").value;
+
+        order.customer.comment =
+
+        document.getElementById("customerComment").value;
+
+        showScreen(9);
+
+        console.log(order);
+
+    });
+
+}
