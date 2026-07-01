@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GDE Vape Shop | Конструктор рідини</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/style.css">
+
+</head>
+
+<body>
+
+<div id="app">
+
+<!-- ========================= -->
+
+<header class="header">
+
+<div class="logo">
+
+<img src="images/logo.png" alt="GDE Vape Shop">
+
+</div>
+
+<h1>GDE Vape Shop</h1>
+
+<p class="subtitle">
+
+Конструктор рідини
+
+</p>
+
+</header>
+
+<!-- ========================= -->
+
+<main>
+
+<!-- Головний екран -->
+
+<section id="screen-home" class="screen active">
+
+<div class="promo">
+
+<div class="promo-title">
+
+🎁 АКЦІЯ
+
+</div>
+
+<p>
+
+При замовленні
+
+<strong>4 рідин</strong>
+
+<strong>5-та у подарунок!</strong>
+
+</p>
+
+<small>
+
+Подарункова рідина того ж об'єму та міцності.
+
+Смак обираєте самостійно.
+
+</small>
+
+</div>
+
+<button id="startOrder"
+
+class="mainButton">
+
+Створити замовлення
+
+</button>
+
+<div class="advantages">
+
+<div class="adv">
+
+✔ Власне виробництво
+
+</div>
+
+<div class="adv">
+
+✔ Великий вибір смаків
+
+</div>
+
+<div class="adv">
+
+✔ Індивідуальні мікси
+
+</div>
+
+<div class="adv">
+
+✔ Фірмові рецепти
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+
+<section
+
+id="screen-nicotine"
+
+class="screen">
+
+<div class="step">
+
+Крок 1 із 9
+
+</div>
+
+<h2>
+
+Оберіть тип нікотину
+
+</h2>
+
+<div class="cardList">
+
+<div class="selectCard"
+
+data-value="salt">
+
+<h3>
+
+SALT
+
+</h3>
+
+<p>
+
+Сольовий нікотин
+
+</p>
+
+</div>
+
+<div class="selectCard"
+
+data-value="organic">
+
+<h3>
+
+ORGANIC
+
+</h3>
+
+<p>
+
+Органічний нікотин
+
+</p>
+
+</div>
+
+</div>
+
+<button
+
+class="nextButton">
+
+Далі
+
+</button>
+
+</section>
+<!-- ========================= -->
+
+<section id="screen-volume" class="screen">
+
+<div class="step">
+
+Крок 2 із 9
+
+</div>
+
+<h2>
+
+Оберіть об'єм
+
+</h2>
+
+<div class="cardList">
+
+<div class="selectCard" data-volume="15">
+
+<h3>15 мл</h3>
+
+<p>Компактний формат</p>
+
+</div>
+
+<div class="selectCard" data-volume="30">
+
+<h3>30 мл</h3>
+
+<p>Найпопулярніший</p>
+
+</div>
+
+<div class="selectCard" data-volume="60">
+
+<h3>60 мл</h3>
+
+<p>Вигідний вибір</p>
+
+</div>
+
+<div class="selectCard" data-volume="115">
+
+<h3>115 мл</h3>
+
+<p>Максимальний об'єм</p>
+
+</div>
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Далі
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+
+<section id="screen-strength" class="screen">
+
+<div class="step">
+
+Крок 3 із 9
+
+</div>
+
+<h2>
+
+Оберіть міцність
+
+</h2>
+
+<div id="strengthButtons">
+
+<!-- JavaScript створить кнопки автоматично -->
+
+</div>
+
+<p class="hint">
+
+💡 Вартість автоматично перераховується залежно від міцності.
+
+</p>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Далі
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+
+<section id="screen-mode" class="screen">
+
+<div class="step">
+
+Крок 4 із 9
+
+</div>
+
+<h2>
+
+Що бажаєте?
+
+</h2>
+
+<div class="cardList">
+
+<div class="bigCard" id="recipesButton">
+
+⭐
+
+<h3>
+
+Фірмові рецепти
+
+</h3>
+
+<p>
+
+Готові рецепти GDE Vape Shop
+
+</p>
+
+</div>
+
+<div class="bigCard" id="customMixButton">
+
+🧪
+
+<h3>
+
+Створити власний мікс
+
+</h3>
+
+<p>
+
+Оберіть будь-які смаки самостійно
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<!-- ====================================== -->
+
+<!-- ЕКРАН ФІРМОВИХ РЕЦЕПТІВ -->
+
+<!-- ====================================== -->
+
+<section id="screen-recipes" class="screen">
+
+<div class="step">
+
+Крок 5 із 9
+
+</div>
+
+<h2>
+
+Фірмові рецепти
+
+</h2>
+
+<p class="description">
+
+Оберіть один із фірмових рецептів або перейдіть до власного міксу.
+
+</p>
+
+<div class="searchBox">
+
+<input
+
+type="text"
+
+id="recipeSearch"
+
+placeholder="Пошук рецепту..."
+
+autocomplete="off">
+
+</div>
+
+<div class="recipeCategories">
+
+<button class="category active">
+
+Усі
+
+</button>
+
+<button class="category">
+
+Фруктові
+
+</button>
+
+<button class="category">
+
+Ягідні
+
+</button>
+
+<button class="category">
+
+Десертні
+
+</button>
+
+<button class="category">
+
+Напої
+
+</button>
+
+<button class="category">
+
+Тютюнові
+
+</button>
+
+<button class="category">
+
+Свіжі
+
+</button>
+
+</div>
+
+<div id="recipesContainer">
+
+<!-- JavaScript автоматично завантажить усі рецепти -->
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Далі
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+
+<!-- ЕКРАН ВЛАСНОГО МІКСУ -->
+
+<!-- ====================================== -->
+
+<section id="screen-custom" class="screen">
+
+<div class="step">
+
+Крок 5 із 9
+
+</div>
+
+<h2>
+
+Створити власний мікс
+
+</h2>
+
+<p class="description">
+
+Можна змішати до 5 смаків.
+
+</p>
+
+<div class="searchBox">
+
+<input
+
+type="text"
+
+id="flavorSearch"
+
+placeholder="Пошук смаку..."
+
+autocomplete="off">
+
+</div>
+
+<div class="flavorCategories">
+
+<button class="category active">
+
+Усі
+
+</button>
+
+<button class="category">
+
+Ягоди
+
+</button>
+
+<button class="category">
+
+Фрукти
+
+</button>
+
+<button class="category">
+
+Напої
+
+</button>
+
+<button class="category">
+
+Десерти
+
+</button>
+
+<button class="category">
+
+Цукерки
+
+</button>
+
+<button class="category">
+
+Тютюн
+
+</button>
+
+<button class="category">
+
+Охолодження
+
+</button>
+
+</div>
+
+<div id="selectedFlavors">
+
+<!-- Тут будуть вибрані смаки -->
+
+</div>
+
+<button
+
+id="addFlavor"
+
+class="secondaryButton">
+
+➕ Додати смак
+
+</button>
+
+<div id="flavorsList">
+
+<!-- JavaScript завантажить всі ароматизатори -->
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Далі
+
+</button>
+
+</div>
+
+</section>
+<!-- ====================================== -->
+
+<!-- НАЛАШТУВАННЯ РІДИНИ -->
+
+<!-- ====================================== -->
+
+<section id="screen-settings" class="screen">
+
+<div class="step">
+
+Крок 6 із 9
+
+</div>
+
+<h2>
+
+Налаштування смаку
+
+</h2>
+
+<div class="sliderCard">
+
+<label>
+
+🍬 Солодкість
+
+<span id="sweetValue">5</span>/10
+
+</label>
+
+<input
+
+type="range"
+
+id="sweetness"
+
+min="1"
+
+max="10"
+
+value="5">
+
+</div>
+
+<div class="sliderCard">
+
+<label>
+
+❄️ Холод
+
+<span id="coldValue">5</span>/10
+
+</label>
+
+<input
+
+type="range"
+
+id="cold"
+
+min="1"
+
+max="10"
+
+value="5">
+
+</div>
+
+<div class="sliderCard">
+
+<label>
+
+🍋 Кислість
+
+<span id="acidValue">5</span>/10
+
+</label>
+
+<input
+
+type="range"
+
+id="acid"
+
+min="1"
+
+max="10"
+
+value="5">
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Далі
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+
+<!-- ДОДАТИ ЩЕ РІДИНУ -->
+
+<!-- ====================================== -->
+
+<section id="screen-more" class="screen">
+
+<div class="step">
+
+Крок 7 із 9
+
+</div>
+
+<h2>
+
+Додати ще рідину?
+
+</h2>
+
+<p class="description">
+
+В одному замовленні можна оформити декілька рідин.
+
+</p>
+
+<button class="mainButton" id="addLiquid">
+
+➕ Додати ще одну рідину
+
+</button>
+
+<button class="secondaryButton" id="continueOrder">
+
+Перейти до оформлення
+
+</button>
+
+<div class="promoMini">
+
+🎁 Замовте 4 рідини та отримайте 5-ту у подарунок.
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+
+<!-- КОШИК -->
+
+<!-- ====================================== -->
+
+<section id="screen-cart" class="screen">
+
+<div class="step">
+
+Крок 8 із 9
+
+</div>
+
+<h2>
+
+Ваше замовлення
+
+</h2>
+
+<div id="cartItems">
+
+<!-- JavaScript -->
+
+</div>
+
+<div class="priceBlock">
+
+<div>
+
+Загальна сума
+
+</div>
+
+<div id="cartPrice">
+
+0 грн
+
+</div>
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Оформити
+
+</button>
+
+</div>
+
+</section>
+<!-- ====================================== -->
+
+<!-- ДОСТАВКА -->
+
+<!-- ====================================== -->
+
+<section id="screen-delivery" class="screen">
+
+<div class="step">
+
+Крок 9 із 9
+
+</div>
+
+<h2>
+
+Спосіб отримання
+
+</h2>
+
+<div class="deliveryCards">
+
+<div class="deliveryCard" data-delivery="pickup">
+
+<h3>
+
+🏪 Самовивіз
+
+</h3>
+
+<p>
+
+Забрати у магазині
+
+</p>
+
+</div>
+
+<div class="deliveryCard" data-delivery="nova">
+
+<h3>
+
+📦 Нова Пошта
+
+</h3>
+
+<p>
+
+Відправлення по Україні
+
+</p>
+
+</div>
+
+<div class="deliveryCard" data-delivery="taxi">
+
+<h3>
+
+🚕
+
+Таксі
+
+</h3>
+
+<p>
+
+Доставка по місту
+
+</p>
+
+<small>
+
+Після повної оплати
+
+</small>
+
+</div>
+
+</div>
+
+<div id="pickupSection" class="deliverySection">
+
+<h3>
+
+Оберіть магазин
+
+</h3>
+
+<div class="shopCard">
+
+📍 Вул. Головна, 123
+
+<br>
+
+Чернівці
+
+</div>
+
+<div class="shopCard">
+
+📍 Пр-т Незалежності, 10Б
+
+<br>
+
+Харків
+
+<br>
+
+Університет
+
+</div>
+
+<div class="shopCard">
+
+📍 Пр-т Героїв Харкова, 274
+
+<br>
+
+Харків
+
+<br>
+
+Індустріальна
+
+</div>
+
+<div class="shopCard">
+
+📍 Вул. Полтавський Шлях, 147
+
+<br>
+
+Харків
+
+<br>
+
+Холодна Гора
+
+</div>
+
+<div class="shopCard">
+
+📍 Вул. Григорія Сковороди, 49А
+
+<br>
+
+Харків
+
+<br>
+
+Архітектора Бекетова
+
+</div>
+
+</div>
+
+<div id="novaSection" class="deliverySection">
+
+<input
+
+type="text"
+
+placeholder="Місто">
+
+<input
+
+type="text"
+
+placeholder="№ відділення">
+
+</div>
+
+<div id="taxiSection" class="deliverySection">
+
+<input
+
+type="text"
+
+placeholder="Адреса доставки">
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
+
+<button class="nextButton">
+
+Далі
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+
+<!-- КОНТАКТИ -->
+
+<!-- ====================================== -->
+
+<section id="screen-contact" class="screen">
+
+<div class="step">
+
+Завершення
+
+</div>
+
+<h2>
+
+Контактні дані
+
+</h2>
+
+<input
+
+type="text"
+
+placeholder="Ваше ім'я">
+
+<input
+
+type="tel"
+
+placeholder="Телефон">
+
+<input
+
+type="text"
+
+placeholder="Telegram (необов'язково)">
+
+<textarea
+
+placeholder="Коментар до замовлення"></textarea>
+
+<button
+
+class="mainButton">
+
+Оформити замовлення
+
+</button>
+
+</section>
+
+<!-- ====================================== -->
+
+<!-- ДЯКУЄМО -->
+
+<!-- ====================================== -->
+
+<section id="screen-success" class="screen">
+
+<div class="success">
+
+<div class="successIcon">
+
+✅
+
+</div>
+
+<h2>
+
+Дякуємо!
+
+</h2>
+
+<p>
+
+Ваше замовлення успішно оформлено.
+
+</p>
+
+<p>
+
+Найближчим часом ми зв'яжемося з вами.
+
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<footer id="cartBar">
+
+<div>
+
+🧪
+
+<span id="cartLiquids">
+
+0
+
+</span>
+
+рідин
+
+</div>
+
+<div>
+
+💰
+
+<span id="cartTotal">
+
+0 грн
+
+</span>
+
+</div>
+
+<div>
+
+🎁
+
+До подарунка
+
+<span id="giftLeft">
+
+4
+
+</span>
+
+</div>
+
+</footer>
+
+<script src="scripts/app.js"></script>
+
+</body>
+
+</html>
