@@ -713,21 +713,7 @@ if(addFlavorButton){
 
 ========================================================== */
 
-const orderButtons = document.querySelectorAll(".nextButton");
 
-orderButtons.forEach(button=>{
-
-    if(button.textContent.includes("Оформлення")){
-
-        button.addEventListener("click",()=>{
-
-            addCurrentLiquid();
-
-        });
-
-    }
-
-});
 
 /* ==========================================================
 
