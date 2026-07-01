@@ -6,13 +6,15 @@ GDE VAPE SHOP
 
 STATE.JS
 
+Version 1.0
+
 ==========================================================
 
 */
 
-const order = {
+"use strict";
 
-    // Поточна рідина
+const order = {
 
     currentLiquid: {
 
@@ -21,6 +23,8 @@ const order = {
         volume: null,
 
         strength: null,
+
+        recipeType: null,
 
         recipe: null,
 
@@ -36,31 +40,29 @@ const order = {
 
     },
 
-    // Усі рідини в замовленні
-
     liquids: [],
-
-    // Доставка
 
     delivery: {
 
         type: null,
 
-        shop: null,
+        shop: "",
 
         city: "",
 
         branch: "",
 
-        address: ""
+        address: "",
+
+        payment: ""
 
     },
-
-    // Клієнт
 
     customer: {
 
         name: "",
+
+        surname: "",
 
         phone: "",
 
@@ -70,17 +72,17 @@ const order = {
 
     },
 
-    // Загальна сума
-
     totalPrice: 0,
-
-    // Подарункова рідина
 
     giftLiquid: false
 
 };
 
-/* ========================================= */
+/* ==========================================================
+
+   RESET CURRENT LIQUID
+
+========================================================== */
 
 function resetCurrentLiquid(){
 
@@ -91,6 +93,8 @@ function resetCurrentLiquid(){
         volume: null,
 
         strength: null,
+
+        recipeType: null,
 
         recipe: null,
 
@@ -108,54 +112,14 @@ function resetCurrentLiquid(){
 
 }
 
-/* ========================================= */
+/* ==========================================================
 
-function addLiquidToOrder(){
+   COUNT
 
-    order.liquids.push({
-
-        ...order.currentLiquid
-
-    });
-
-    resetCurrentLiquid();
-
-}
-
-/* ========================================= */
-
-function updateTotalPrice(){
-
-    let total = 0;
-
-    order.liquids.forEach(liquid=>{
-
-        total += liquid.price;
-
-    });
-
-    order.totalPrice = total;
-
-}
-
-/* ========================================= */
+========================================================== */
 
 function liquidsCount(){
 
     return order.liquids.length;
-
-}
-
-/* ========================================= */
-
-function giftProgress(){
-
-    return Math.max(
-
-        0,
-
-        4 - order.liquids.length
-
-    );
 
 }
