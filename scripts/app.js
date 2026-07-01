@@ -132,7 +132,59 @@ nextButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
 
-        nextScreen();
+        switch(currentScreen){
+
+            case 1:
+
+                showScreen(2);
+
+                break;
+
+            case 2:
+
+                showScreen(3);
+
+                break;
+
+            case 3:
+
+                showScreen(4);
+
+                break;
+
+            case 4:
+
+                break;
+
+            case 5:
+
+            case 6:
+
+                showScreen(7);
+
+                break;
+
+            case 7:
+
+                addCurrentLiquid();
+
+                break;
+
+            case 8:
+
+                showScreen(9);
+
+                break;
+
+            case 9:
+
+                break;
+
+            default:
+
+                nextScreen();
+
+        }
 
     });
 
