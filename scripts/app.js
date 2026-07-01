@@ -96,6 +96,34 @@ function showScreen(index){
 
 function nextScreen(){
 
+    if(currentScreen===1){
+
+        if(order.currentLiquid.nicotineType==="organic"){
+
+            showScreen(2);
+
+            return;
+
+        }
+
+        if(order.currentLiquid.nicotineType==="salt"){
+
+            showScreen(3);
+
+            return;
+
+        }
+
+    }
+
+    if(currentScreen===2){
+
+        showScreen(3);
+
+        return;
+
+    }
+
     showScreen(currentScreen+1);
 
 }
