@@ -258,3 +258,84 @@ function updateCart(){
 
 updateCart();
 });
+/* ===========================================
+
+   ГЕНЕРАЦІЯ МІЦНОСТІ
+
+=========================================== */
+
+const strengthContainer = document.querySelector("#screenStrength .cardList");
+
+function renderStrengths() {
+
+    if (!strengthContainer) return;
+
+    strengthContainer.innerHTML = "";
+
+    let strengths = [];
+
+    if (order.currentLiquid.nicotineType === "organic") {
+
+        strengths = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+    } else {
+
+        strengths = [0,1,2,3,4,5,6.5];
+
+    }
+
+    strengths.forEach(value => {
+
+        const card = document.createElement("div");
+
+        card.className = "selectCard";
+
+        card.dataset.strength = value;
+
+        card.innerHTML = `
+
+            <h3>${value}</h3>
+
+            <p>мг/мл</p>
+
+        `;
+
+        card.addEventListener("click", () => {
+
+            document
+
+                .querySelectorAll("#screenStrength .selectCard")
+
+                .forEach(c => c.classList.remove("active"));
+
+            card.classList.add("active");
+
+            order.currentLiquid.strength = value;
+
+            calculateCurrentLiquid();
+
+            updateCart();
+
+        });
+
+        strengthContainer.appendChild(card);
+
+    });
+
+}
+
+/* ===========================================
+
+   ПІСЛЯ ВИБОРУ ТИПУ НІКОТИНУ
+
+=========================================== */
+
+nicotineCards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        renderStrengths();
+
+    });
+
+});
