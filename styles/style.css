@@ -1,0 +1,1391 @@
+/* ==========================================================
+
+   GDE VAPE SHOP
+
+   STYLE.CSS
+
+========================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:#111114;
+
+    color:#ffffff;
+
+    font-family:'Poppins',sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/* ========================= */
+
+#app{
+
+    max-width:650px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ========================= */
+
+.header{
+
+    text-align:center;
+
+    padding:30px 20px 15px;
+
+}
+
+.logo{
+
+    width:120px;
+
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    box-shadow:
+
+    0 0 25px rgba(142,69,255,.35);
+
+}
+
+.logo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.header h1{
+
+    margin-top:18px;
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+.subtitle{
+
+    color:#aaaaaa;
+
+    margin-top:8px;
+
+    font-size:15px;
+
+}
+
+/* ========================= */
+
+.screen{
+
+    display:none;
+
+    padding:22px;
+
+    animation:fade .35s ease;
+
+}
+
+.screen.active{
+
+    display:block;
+
+}
+
+.step{
+
+    color:#8d5dff;
+
+    font-size:14px;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+}
+
+h2{
+
+    font-size:30px;
+
+    margin-bottom:18px;
+
+}
+
+.description{
+
+    color:#bdbdbd;
+
+    line-height:1.5;
+
+    margin-bottom:25px;
+
+}
+
+/* ========================= */
+
+.promo{
+
+    background:#19191d;
+
+    border:1px solid rgba(140,80,255,.35);
+
+    border-radius:22px;
+
+    padding:24px;
+
+    margin-bottom:25px;
+
+}
+
+.promo-title{
+
+    font-size:24px;
+
+    color:#b27cff;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.promo small{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#9c9c9c;
+
+    line-height:1.5;
+
+}
+
+/* ========================= */
+
+.mainButton{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    background:#8b4dff;
+
+    color:white;
+
+    transition:.25s;
+
+    margin-top:18px;
+
+}
+
+.mainButton:hover{
+
+    transform:translateY(-2px);
+
+    background:#9d69ff;
+
+}
+
+.secondaryButton{
+
+    width:100%;
+
+    padding:18px;
+
+    margin-top:15px;
+
+    border-radius:18px;
+
+    background:#1f1f24;
+
+    color:white;
+
+    border:1px solid #34343d;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+.secondaryButton:hover{
+
+    background:#292930;
+
+}
+/* ========================= */
+
+/* CARD SELECTORS */
+
+/* ========================= */
+
+.cardList{
+
+    display:grid;
+
+    gap:18px;
+
+    margin-top:25px;
+
+}
+
+.selectCard{
+
+    background:#1b1b20;
+
+    border:2px solid transparent;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+
+}
+
+.selectCard:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#8b4dff;
+
+    box-shadow:
+
+    0 15px 40px rgba(139,77,255,.25);
+
+}
+
+.selectCard.active{
+
+    border-color:#8b4dff;
+
+    background:#241b35;
+
+}
+
+.selectCard h3{
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
+}
+
+.selectCard p{
+
+    color:#bdbdbd;
+
+    line-height:1.5;
+
+}
+
+/* ========================= */
+
+.bigCard{
+
+    background:#1b1b20;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:center;
+
+    border:2px solid transparent;
+
+}
+
+.bigCard:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#8b4dff;
+
+}
+
+.bigCard h3{
+
+    margin:15px 0;
+
+    font-size:24px;
+
+}
+
+.bigCard p{
+
+    color:#b7b7b7;
+
+}
+
+/* ========================= */
+
+.navigation{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.navigation button{
+
+    flex:1;
+
+}
+
+.backButton{
+
+    background:#24242a;
+
+    border:none;
+
+    color:white;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+}
+
+.nextButton{
+
+    background:#8b4dff;
+
+    border:none;
+
+    color:white;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+.backButton:hover{
+
+    background:#32323b;
+
+}
+
+.nextButton:hover{
+
+    background:#9b67ff;
+
+}
+
+/* ========================= */
+
+/* SEARCH */
+
+/* ========================= */
+
+.searchBox{
+
+    margin:20px 0;
+
+}
+
+.searchBox input{
+
+    width:100%;
+
+    background:#1d1d23;
+
+    color:white;
+
+    border:1px solid #353540;
+
+    border-radius:18px;
+
+    padding:17px;
+
+    font-size:16px;
+
+}
+
+.searchBox input:focus{
+
+    outline:none;
+
+    border-color:#8b4dff;
+
+}
+
+/* ========================= */
+
+.category{
+
+    background:#232329;
+
+    color:white;
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:12px 18px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.category.active{
+
+    background:#8b4dff;
+
+}
+
+.recipeCategories,
+
+.flavorCategories{
+
+    display:flex;
+
+    gap:10px;
+
+    overflow:auto;
+
+    padding-bottom:12px;
+
+    margin-bottom:25px;
+
+}
+
+.recipeCategories::-webkit-scrollbar,
+
+.flavorCategories::-webkit-scrollbar{
+
+    display:none;
+
+}
+/* ==========================================================
+
+   SLIDERS
+
+========================================================== */
+
+.sliderCard{
+
+    background:#1b1b20;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    margin-bottom:22px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.sliderCard label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.sliderCard span{
+
+    color:#9b67ff;
+
+    font-weight:700;
+
+}
+
+input[type=range]{
+
+    width:100%;
+
+    height:8px;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    background:#32323b;
+
+    border-radius:30px;
+
+}
+
+input[type=range]::-webkit-slider-thumb{
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:50%;
+
+    background:#8b4dff;
+
+    cursor:pointer;
+
+    box-shadow:0 0 18px rgba(139,77,255,.55);
+
+}
+
+input[type=range]::-moz-range-thumb{
+
+    width:24px;
+
+    height:24px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#8b4dff;
+
+}
+
+/* ==========================================================
+
+   INPUTS
+
+========================================================== */
+
+input,
+
+textarea{
+
+    width:100%;
+
+    background:#1b1b20;
+
+    border:1px solid #32323b;
+
+    color:white;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    font-size:16px;
+
+    margin-bottom:18px;
+
+    transition:.2s;
+
+}
+
+textarea{
+
+    resize:none;
+
+    min-height:130px;
+
+}
+
+input:focus,
+
+textarea:focus{
+
+    outline:none;
+
+    border-color:#8b4dff;
+
+    box-shadow:0 0 15px rgba(139,77,255,.18);
+
+}
+
+/* ==========================================================
+
+   SHOP CARDS
+
+========================================================== */
+
+.shopCard{
+
+    background:#1b1b20;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    border:2px solid transparent;
+
+}
+
+.shopCard:hover{
+
+    border-color:#8b4dff;
+
+    transform:translateY(-2px);
+
+}
+
+.shopCard.active{
+
+    border-color:#8b4dff;
+
+    background:#241b35;
+
+}
+
+/* ==========================================================
+
+   PRICE BLOCK
+
+========================================================== */
+
+.priceBlock{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#1c1c22;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    margin-top:25px;
+
+    margin-bottom:25px;
+
+}
+
+#cartPrice{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#9b67ff;
+
+}
+
+/* ==========================================================
+
+   CART BAR
+
+========================================================== */
+
+#cartBar{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    background:#18181d;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding:18px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    backdrop-filter:blur(20px);
+
+    z-index:999;
+
+}
+
+#cartBar div{
+
+    display:flex;
+
+    gap:6px;
+
+    align-items:center;
+
+    font-weight:600;
+
+    color:white;
+
+}
+/* ==========================================================
+
+   RECIPE CARDS
+
+========================================================== */
+
+#recipesContainer,
+
+#flavorsList{
+
+    display:grid;
+
+    gap:18px;
+
+    margin-top:20px;
+
+}
+
+.recipeCard,
+
+.flavorCard{
+
+    background:#1a1a20;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    transition:.25s;
+
+    cursor:pointer;
+
+}
+
+.recipeCard:hover,
+
+.flavorCard:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#8b4dff;
+
+    box-shadow:0 12px 35px rgba(139,77,255,.18);
+
+}
+
+.recipeTop{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.recipeName{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.recipeBadge{
+
+    background:#8b4dff;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:25px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.recipeDescription{
+
+    color:#bdbdbd;
+
+    line-height:1.6;
+
+    margin:15px 0;
+
+}
+
+.recipeFooter{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.chooseRecipe{
+
+    background:#8b4dff;
+
+    border:none;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+
+   SELECTED FLAVORS
+
+========================================================== */
+
+#selectedFlavors{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+.selectedFlavor{
+
+    background:#1b1b20;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.selectedFlavorHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.selectedFlavorName{
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.removeFlavor{
+
+    background:#ff4a4a;
+
+    border:none;
+
+    color:white;
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+}
+
+.percentLabel{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:10px;
+
+    color:#9d9d9d;
+
+    font-size:14px;
+
+}
+
+/* ==========================================================
+
+   DELIVERY
+
+========================================================== */
+
+.deliveryCards{
+
+    display:grid;
+
+    gap:18px;
+
+    margin-top:25px;
+
+}
+
+.deliveryCard{
+
+    background:#1b1b20;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    cursor:pointer;
+
+    border:2px solid transparent;
+
+    transition:.25s;
+
+}
+
+.deliveryCard:hover{
+
+    border-color:#8b4dff;
+
+}
+
+.deliveryCard.active{
+
+    border-color:#8b4dff;
+
+    background:#241b35;
+
+}
+
+.deliverySection{
+
+    margin-top:25px;
+
+}
+
+/* ==========================================================
+
+   SUCCESS
+
+========================================================== */
+
+.success{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    min-height:65vh;
+
+}
+
+.successIcon{
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    background:#8b4dff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:54px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 0 40px rgba(139,77,255,.35);
+
+}
+
+.success h2{
+
+    margin-bottom:20px;
+
+}
+
+.success p{
+
+    color:#bdbdbd;
+
+    line-height:1.6;
+
+    max-width:420px;
+
+}
+/* ==========================================================
+
+   ANIMATIONS
+
+========================================================== */
+
+@keyframes fade {
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes pulse {
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.04);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.mainButton:active,
+
+.nextButton:active,
+
+.secondaryButton:active{
+
+    transform:scale(.97);
+
+}
+
+.successIcon{
+
+    animation:pulse 2s infinite;
+
+}
+
+/* ==========================================================
+
+   SCROLLBAR
+
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111114;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#8b4dff;
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#a06cff;
+
+}
+
+/* ==========================================================
+
+   MOBILE
+
+========================================================== */
+
+@media(max-width:480px){
+
+.header{
+
+    padding:24px 16px 12px;
+
+}
+
+.logo{
+
+    width:95px;
+
+    height:95px;
+
+}
+
+.header h1{
+
+    font-size:26px;
+
+}
+
+h2{
+
+    font-size:25px;
+
+}
+
+.screen{
+
+    padding:18px;
+
+    padding-bottom:110px;
+
+}
+
+.selectCard{
+
+    padding:18px;
+
+}
+
+.bigCard{
+
+    padding:22px;
+
+}
+
+.mainButton,
+
+.secondaryButton,
+
+.nextButton,
+
+.backButton{
+
+    padding:16px;
+
+    font-size:16px;
+
+}
+
+.recipeName{
+
+    font-size:19px;
+
+}
+
+.priceBlock{
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+#cartBar{
+
+    padding:14px;
+
+    font-size:14px;
+
+}
+
+}
+
+/* ==========================================================
+
+   DESKTOP
+
+========================================================== */
+
+@media(min-width:900px){
+
+#app{
+
+    max-width:720px;
+
+}
+
+}
+
+/* ==========================================================
+
+   HIDDEN
+
+========================================================== */
+
+.hidden{
+
+    display:none !important;
+
+}
+
+/* ==========================================================
+
+   LOADER
+
+========================================================== */
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    border:5px solid rgba(255,255,255,.08);
+
+    border-top:5px solid #8b4dff;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================================
+
+   GLASS EFFECT
+
+========================================================== */
+
+.glass{
+
+    background:rgba(255,255,255,.04);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ==========================================================
+
+   END
+
+========================================================== */
