@@ -522,7 +522,9 @@ function addCurrentLiquid(){
 
     updateCart();
 
-    showScreen(7);
+    resetCurrentLiquid();
+
+    showScreen(8);
 
 }
 
