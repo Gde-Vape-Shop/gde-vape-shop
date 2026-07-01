@@ -794,7 +794,23 @@ function refreshBottomBar(){
         giftCounter.textContent = "🎁";
 
     }
+const giftButton =
 
+document.getElementById("giftButton");
+
+if(giftButton){
+
+    if(order.liquids.length>=4 && !order.giftLiquid){
+
+        giftButton.classList.remove("hidden");
+
+    }else{
+
+        giftButton.classList.add("hidden");
+
+    }
+
+}
 }
 
 /* ==========================================================
@@ -1368,3 +1384,26 @@ updateSliderValues();
 renderSelectedFlavors();
 
 renderCartItems();
+/* ==========================================================
+
+   GIFT LIQUID
+
+========================================================== */
+
+const giftButton =
+
+document.getElementById("giftButton");
+
+if(giftButton){
+
+    giftButton.addEventListener("click",()=>{
+
+        order.giftLiquid=true;
+
+        resetCurrentLiquid();
+
+        showScreen(1);
+
+    });
+
+}
