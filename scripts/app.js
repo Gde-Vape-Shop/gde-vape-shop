@@ -96,35 +96,95 @@ function showScreen(index){
 
 function nextScreen(){
 
-    if(currentScreen===1){
+    switch(currentScreen){
 
-        if(order.currentLiquid.nicotineType==="organic"){
+        case 1:
 
-            showScreen(2);
+            if(order.currentLiquid.nicotineType==="organic"){
 
-            return;
+                showScreen(2);
 
-        }
+            }else{
 
-        if(order.currentLiquid.nicotineType==="salt"){
+                showScreen(3);
+
+            }
+
+            break;
+
+        case 2:
 
             showScreen(3);
 
-            return;
+            break;
 
-        }
+        case 3:
+
+            showScreen(4);
+
+            break;
+
+        case 4:
+
+            showScreen(5);
+
+            break;
+
+        case 5:
+
+            showScreen(6);
+
+            break;
+
+        case 6:
+
+            showScreen(7);
+
+            break;
+
+        case 7:
+
+            addCurrentLiquid();
+
+            break;
+
+        case 8:
+
+            showScreen(9);
+
+            break;
+
+        case 9:
+
+            if(order.delivery.type==="pickup"){
+
+                finishOrderButton.click();
+
+            }else{
+
+                const name=document.getElementById("customerName")?.value.trim();
+
+                const phone=document.getElementById("customerPhone")?.value.trim();
+
+                if(!name || !phone){
+
+                    alert("Введіть ім'я та номер телефону");
+
+                    return;
+
+                }
+
+                finishOrderButton.click();
+
+            }
+
+            break;
+
+        default:
+
+            showScreen(currentScreen+1);
 
     }
-
-    if(currentScreen===2){
-
-        showScreen(3);
-
-        return;
-
-    }
-
-    showScreen(currentScreen+1);
 
 }
 
@@ -160,57 +220,7 @@ nextButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
 
-        switch(currentScreen){
-
-            case 1:
-
-                showScreen(2);
-
-                break;
-
-            case 2:
-
-                showScreen(3);
-
-                break;
-
-            case 3:
-
-                showScreen(4);
-
-                break;
-
-            case 4:
-
-                break;
-
-            case 5:
-
-            case 6:
-
-                showScreen(7);
-
-                break;
-
-            case 7:
-
-                addCurrentLiquid();
-
-                break;
-
-            case 8:
-
-                showScreen(9);
-
-                break;
-
-            case 9:
-
-                break;
-
-            default:
-
-                nextScreen();
+        
 
         }
 
@@ -222,8 +232,7 @@ backButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
 
-        previousScreen();
-
+        nextScreen();
     });
 
 });
