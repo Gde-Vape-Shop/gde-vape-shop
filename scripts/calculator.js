@@ -225,12 +225,21 @@ function addLiquidToOrder(){
 
     );
 
+    if(order.giftLiquid){
+
+        liquid.price = 0;
+
+        liquid.isGift = true;
+
+        order.giftLiquid = false;
+
+    }
+
     order.liquids.push(liquid);
 
     updateTotalPrice();
 
 }
-
 /* ===============================
 
    REMOVE LIQUID
