@@ -6,17 +6,29 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
 
-<title>GDE Vape Shop | Конструктор рідини</title>
+content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>GDE Vape Shop</title>
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+href="https://fonts.googleapis.com">
 
-<link rel="stylesheet" href="styles/style.css">
+<link rel="preconnect"
+
+href="https://fonts.gstatic.com"
+
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+
+rel="stylesheet">
+
+<link rel="stylesheet"
+
+href="styles/style.css">
 
 </head>
 
@@ -24,21 +36,23 @@
 
 <div id="app">
 
-<!-- ========================= -->
-
 <header class="header">
 
 <div class="logo">
 
-<img src="images/logo.png" alt="GDE Vape Shop">
+<img
+
+src="images/logo.png"
+
+alt="GDE Vape Shop">
 
 </div>
 
-<h1>GDE Vape Shop</h1>
+<h1>GDE VAPE SHOP</h1>
 
 <p class="subtitle">
 
-Конструктор рідини
+Конструктор авторських рідин
 
 </p>
 
@@ -46,41 +60,49 @@
 
 <!-- ========================= -->
 
-<main>
+<section
 
-<!-- Головний екран -->
+class="screen active"
 
-<section id="screen-home" class="screen active">
+id="screenHome">
 
 <div class="promo">
 
 <div class="promo-title">
 
-🎁 АКЦІЯ
+Створи власну рідину
 
 </div>
 
 <p>
 
-При замовленні
-
-<strong>4 рідин</strong>
-
-<strong>5-та у подарунок!</strong>
+Обери готовий рецепт або створи власний мікс із сотень ароматів.
 
 </p>
 
 <small>
 
-Подарункова рідина того ж об'єму та міцності.
+✔ Salt та Organic
 
-Смак обираєте самостійно.
+<br>
+
+✔ Авторські рецепти
+
+<br>
+
+✔ Власний мікс
+
+<br>
+
+✔ Швидке оформлення
 
 </small>
 
 </div>
 
-<button id="startOrder"
+<button
+
+id="startOrder"
 
 class="mainButton">
 
@@ -88,67 +110,37 @@ class="mainButton">
 
 </button>
 
-<div class="advantages">
-
-<div class="adv">
-
-✔ Власне виробництво
-
-</div>
-
-<div class="adv">
-
-✔ Великий вибір смаків
-
-</div>
-
-<div class="adv">
-
-✔ Індивідуальні мікси
-
-</div>
-
-<div class="adv">
-
-✔ Фірмові рецепти
-
-</div>
-
-</div>
-
 </section>
 
 <!-- ========================= -->
 
 <section
 
-id="screen-nicotine"
+class="screen"
 
-class="screen">
+id="screenBase">
 
 <div class="step">
 
-Крок 1 із 9
+Крок 1 із 8
 
 </div>
 
 <h2>
 
-Оберіть тип нікотину
+Основа
 
 </h2>
 
 <div class="cardList">
 
-<div class="selectCard"
+<div
 
-data-value="salt">
+class="selectCard"
 
-<h3>
+data-base="salt">
 
-SALT
-
-</h3>
+<h3>Salt</h3>
 
 <p>
 
@@ -158,15 +150,13 @@ SALT
 
 </div>
 
-<div class="selectCard"
+<div
 
-data-value="organic">
+class="selectCard"
 
-<h3>
+data-base="organic">
 
-ORGANIC
-
-</h3>
+<h3>Organic</h3>
 
 <p>
 
@@ -178,6 +168,16 @@ ORGANIC
 
 </div>
 
+<div class="navigation">
+
+<button
+
+class="backButton">
+
+Назад
+
+</button>
+
 <button
 
 class="nextButton">
@@ -186,59 +186,63 @@ class="nextButton">
 
 </button>
 
+</div>
+
 </section>
+
 <!-- ========================= -->
 
-<section id="screen-volume" class="screen">
+<section
+
+class="screen"
+
+id="screenVolume">
 
 <div class="step">
 
-Крок 2 із 9
+Крок 2 із 8
 
 </div>
 
 <h2>
 
-Оберіть об'єм
+Об'єм
 
 </h2>
 
 <div class="cardList">
 
-<div class="selectCard" data-volume="15">
+<div
 
-<h3>15 мл</h3>
+class="selectCard"
 
-<p>Компактний формат</p>
-
-</div>
-
-<div class="selectCard" data-volume="30">
+data-volume="30">
 
 <h3>30 мл</h3>
 
-<p>Найпопулярніший</p>
-
 </div>
 
-<div class="selectCard" data-volume="60">
+<div
+
+class="selectCard"
+
+data-volume="60">
 
 <h3>60 мл</h3>
 
-<p>Вигідний вибір</p>
+</div>
+
+<div
+
+class="selectCard"
+
+data-volume="120">
+
+<h3>120 мл</h3>
 
 </div>
 
-<div class="selectCard" data-volume="115">
-
-<h3>115 мл</h3>
-
-<p>Максимальний об'єм</p>
-
 </div>
-
-</div>
-
 <div class="navigation">
 
 <button class="backButton">
@@ -259,31 +263,91 @@ class="nextButton">
 
 <!-- ========================= -->
 
-<section id="screen-strength" class="screen">
+<section
+
+class="screen"
+
+id="screenStrength">
 
 <div class="step">
 
-Крок 3 із 9
+Крок 3 із 8
 
 </div>
 
 <h2>
 
-Оберіть міцність
+Міцність
 
 </h2>
 
-<div id="strengthButtons">
+<div class="cardList">
 
-<!-- JavaScript створить кнопки автоматично -->
+<div
+
+class="selectCard"
+
+data-strength="0">
+
+<h3>0 мг</h3>
+
+<p>
+
+Без нікотину
+
+</p>
 
 </div>
 
-<p class="hint">
+<div
 
-💡 Вартість автоматично перераховується залежно від міцності.
+class="selectCard"
+
+data-strength="25">
+
+<h3>25 мг</h3>
+
+<p>
+
+Легка міцність
 
 </p>
+
+</div>
+
+<div
+
+class="selectCard"
+
+data-strength="50">
+
+<h3>50 мг</h3>
+
+<p>
+
+Стандартна міцність
+
+</p>
+
+</div>
+
+<div
+
+class="selectCard"
+
+data-strength="65">
+
+<h3>65 мг</h3>
+
+<p>
+
+Максимальна міцність
+
+</p>
+
+</div>
+
+</div>
 
 <div class="navigation">
 
@@ -305,11 +369,15 @@ class="nextButton">
 
 <!-- ========================= -->
 
-<section id="screen-mode" class="screen">
+<section
+
+class="screen"
+
+id="screenType">
 
 <div class="step">
 
-Крок 4 із 9
+Крок 4 із 8
 
 </div>
 
@@ -321,56 +389,70 @@ class="nextButton">
 
 <div class="cardList">
 
-<div class="bigCard" id="recipesButton">
+<div
 
-⭐
+class="bigCard"
+
+id="recipesButton">
 
 <h3>
 
-Фірмові рецепти
+🔥 Фірмовий рецепт
 
 </h3>
 
 <p>
 
-Готові рецепти GDE Vape Shop
+Обрати один із авторських рецептів GDE Vape
 
 </p>
 
 </div>
 
-<div class="bigCard" id="customMixButton">
+<div
 
-🧪
+class="bigCard"
+
+id="mixButton">
 
 <h3>
 
-Створити власний мікс
+🧪 Власний мікс
 
 </h3>
 
 <p>
 
-Оберіть будь-які смаки самостійно
+Створити рідину зі своїх смаків
 
 </p>
 
 </div>
+
+</div>
+
+<div class="navigation">
+
+<button class="backButton">
+
+Назад
+
+</button>
 
 </div>
 
 </section>
-<!-- ====================================== -->
+<!-- ========================= -->
 
-<!-- ЕКРАН ФІРМОВИХ РЕЦЕПТІВ -->
+<section
 
-<!-- ====================================== -->
+class="screen"
 
-<section id="screen-recipes" class="screen">
+id="screenRecipes">
 
 <div class="step">
 
-Крок 5 із 9
+Крок 5 із 8
 
 </div>
 
@@ -382,7 +464,7 @@ class="nextButton">
 
 <p class="description">
 
-Оберіть один із фірмових рецептів або перейдіть до власного міксу.
+Оберіть один із фірмових рецептів GDE Vape Shop
 
 </p>
 
@@ -394,9 +476,7 @@ type="text"
 
 id="recipeSearch"
 
-placeholder="Пошук рецепту..."
-
-autocomplete="off">
+placeholder="Пошук рецепту...">
 
 </div>
 
@@ -448,7 +528,7 @@ autocomplete="off">
 
 <div id="recipesContainer">
 
-<!-- JavaScript автоматично завантажить усі рецепти -->
+<!-- JavaScript -->
 
 </div>
 
@@ -470,29 +550,29 @@ autocomplete="off">
 
 </section>
 
-<!-- ====================================== -->
+<!-- ========================= -->
 
-<!-- ЕКРАН ВЛАСНОГО МІКСУ -->
+<section
 
-<!-- ====================================== -->
+class="screen"
 
-<section id="screen-custom" class="screen">
+id="screenCustomMix">
 
 <div class="step">
 
-Крок 5 із 9
+Крок 5 із 8
 
 </div>
 
 <h2>
 
-Створити власний мікс
+Створіть власний мікс
 
 </h2>
 
 <p class="description">
 
-Можна змішати до 5 смаків.
+До 5 смаків в одній рідині
 
 </p>
 
@@ -504,9 +584,7 @@ type="text"
 
 id="flavorSearch"
 
-placeholder="Пошук смаку..."
-
-autocomplete="off">
+placeholder="Пошук смаку...">
 
 </div>
 
@@ -532,13 +610,13 @@ autocomplete="off">
 
 <button class="category">
 
-Напої
+Десерти
 
 </button>
 
 <button class="category">
 
-Десерти
+Напої
 
 </button>
 
@@ -564,7 +642,7 @@ autocomplete="off">
 
 <div id="selectedFlavors">
 
-<!-- Тут будуть вибрані смаки -->
+<!-- Обрані смаки -->
 
 </div>
 
@@ -580,7 +658,7 @@ class="secondaryButton">
 
 <div id="flavorsList">
 
-<!-- JavaScript завантажить всі ароматизатори -->
+<!-- JavaScript -->
 
 </div>
 
@@ -601,23 +679,23 @@ class="secondaryButton">
 </div>
 
 </section>
-<!-- ====================================== -->
+<!-- ========================= -->
 
-<!-- НАЛАШТУВАННЯ РІДИНИ -->
+<section
 
-<!-- ====================================== -->
+class="screen"
 
-<section id="screen-settings" class="screen">
+id="screenSettings">
 
 <div class="step">
 
-Крок 6 із 9
+Крок 6 із 8
 
 </div>
 
 <h2>
 
-Налаштування смаку
+Налаштування
 
 </h2>
 
@@ -627,7 +705,7 @@ class="secondaryButton">
 
 🍬 Солодкість
 
-<span id="sweetValue">5</span>/10
+<span id="sweetValue">5</span>
 
 </label>
 
@@ -635,13 +713,13 @@ class="secondaryButton">
 
 type="range"
 
-id="sweetness"
-
 min="1"
 
 max="10"
 
-value="5">
+value="5"
+
+id="sweetness">
 
 </div>
 
@@ -651,7 +729,7 @@ value="5">
 
 ❄️ Холод
 
-<span id="coldValue">5</span>/10
+<span id="coldValue">5</span>
 
 </label>
 
@@ -659,13 +737,13 @@ value="5">
 
 type="range"
 
-id="cold"
-
 min="1"
 
 max="10"
 
-value="5">
+value="5"
+
+id="cold">
 
 </div>
 
@@ -675,7 +753,7 @@ value="5">
 
 🍋 Кислість
 
-<span id="acidValue">5</span>/10
+<span id="acidValue">5</span>
 
 </label>
 
@@ -683,13 +761,13 @@ value="5">
 
 type="range"
 
-id="acid"
-
 min="1"
 
 max="10"
 
-value="5">
+value="5"
+
+id="acid">
 
 </div>
 
@@ -711,63 +789,17 @@ value="5">
 
 </section>
 
-<!-- ====================================== -->
+<!-- ========================= -->
 
-<!-- ДОДАТИ ЩЕ РІДИНУ -->
+<section
 
-<!-- ====================================== -->
+class="screen"
 
-<section id="screen-more" class="screen">
-
-<div class="step">
-
-Крок 7 із 9
-
-</div>
-
-<h2>
-
-Додати ще рідину?
-
-</h2>
-
-<p class="description">
-
-В одному замовленні можна оформити декілька рідин.
-
-</p>
-
-<button class="mainButton" id="addLiquid">
-
-➕ Додати ще одну рідину
-
-</button>
-
-<button class="secondaryButton" id="continueOrder">
-
-Перейти до оформлення
-
-</button>
-
-<div class="promoMini">
-
-🎁 Замовте 4 рідини та отримайте 5-ту у подарунок.
-
-</div>
-
-</section>
-
-<!-- ====================================== -->
-
-<!-- КОШИК -->
-
-<!-- ====================================== -->
-
-<section id="screen-cart" class="screen">
+id="screenCart">
 
 <div class="step">
 
-Крок 8 із 9
+Крок 7 із 8
 
 </div>
 
@@ -787,7 +819,7 @@ value="5">
 
 <div>
 
-Загальна сума
+До сплати
 
 </div>
 
@@ -796,6 +828,18 @@ value="5">
 0 грн
 
 </div>
+
+</div>
+
+<div class="promo">
+
+<strong>
+
+🎁 При замовленні 4 рідин —
+
+5-та у подарунок!
+
+</strong>
 
 </div>
 
@@ -809,72 +853,65 @@ value="5">
 
 <button class="nextButton">
 
-Оформити
+Оформлення
 
 </button>
 
 </div>
 
 </section>
-<!-- ====================================== -->
 
-<!-- ДОСТАВКА -->
+<!-- ========================= -->
 
-<!-- ====================================== -->
+<section
 
-<section id="screen-delivery" class="screen">
+class="screen"
+
+id="screenDelivery">
 
 <div class="step">
 
-Крок 9 із 9
+Крок 8 із 8
 
 </div>
 
 <h2>
 
-Спосіб отримання
+Отримання замовлення
 
 </h2>
 
 <div class="deliveryCards">
 
-<div class="deliveryCard" data-delivery="pickup">
+<div class="deliveryCard">
+
+🏪
 
 <h3>
 
-🏪 Самовивіз
+Самовивіз
 
 </h3>
 
-<p>
-
-Забрати у магазині
-
-</p>
-
 </div>
 
-<div class="deliveryCard" data-delivery="nova">
+<div class="deliveryCard">
+
+📦
 
 <h3>
 
-📦 Нова Пошта
+Нова Пошта
 
 </h3>
 
-<p>
-
-Відправлення по Україні
-
-</p>
-
 </div>
 
-<div class="deliveryCard" data-delivery="taxi">
-
-<h3>
+<div class="deliveryCard">
 
 🚕
+
+<h3>
 
 Таксі
 
@@ -882,20 +919,13 @@ value="5">
 
 <p>
 
-Доставка по місту
+Після повної оплати
 
 </p>
 
-<small>
-
-Після повної оплати
-
-</small>
-
 </div>
 
 </div>
-
 <div id="pickupSection" class="deliverySection">
 
 <h3>
@@ -972,7 +1002,7 @@ value="5">
 
 </div>
 
-<div id="novaSection" class="deliverySection">
+<div id="novaSection" class="deliverySection hidden">
 
 <input
 
@@ -984,17 +1014,23 @@ placeholder="Місто">
 
 type="text"
 
-placeholder="№ відділення">
+placeholder="Відділення Нової Пошти">
 
 </div>
 
-<div id="taxiSection" class="deliverySection">
+<div id="taxiSection" class="deliverySection hidden">
 
 <input
 
 type="text"
 
 placeholder="Адреса доставки">
+
+<p class="description">
+
+🚕 Доставка таксі здійснюється лише після повної оплати замовлення.
+
+</p>
 
 </div>
 
@@ -1016,13 +1052,13 @@ placeholder="Адреса доставки">
 
 </section>
 
-<!-- ====================================== -->
+<!-- ========================= -->
 
-<!-- КОНТАКТИ -->
+<section
 
-<!-- ====================================== -->
+class="screen"
 
-<section id="screen-contact" class="screen">
+id="screenContact">
 
 <div class="step">
 
@@ -1040,11 +1076,15 @@ placeholder="Адреса доставки">
 
 type="text"
 
+id="customerName"
+
 placeholder="Ваше ім'я">
 
 <input
 
 type="tel"
+
+id="customerPhone"
 
 placeholder="Телефон">
 
@@ -1052,13 +1092,19 @@ placeholder="Телефон">
 
 type="text"
 
+id="customerTelegram"
+
 placeholder="Telegram (необов'язково)">
 
 <textarea
 
+id="customerComment"
+
 placeholder="Коментар до замовлення"></textarea>
 
 <button
+
+id="finishOrder"
 
 class="mainButton">
 
@@ -1068,13 +1114,13 @@ class="mainButton">
 
 </section>
 
-<!-- ====================================== -->
+<!-- ========================= -->
 
-<!-- ДЯКУЄМО -->
+<section
 
-<!-- ====================================== -->
+class="screen"
 
-<section id="screen-success" class="screen">
+id="screenSuccess">
 
 <div class="success">
 
@@ -1106,7 +1152,7 @@ class="mainButton">
 
 </section>
 
-</main>
+</div>
 
 <footer id="cartBar">
 
@@ -1119,8 +1165,6 @@ class="mainButton">
 0
 
 </span>
-
-рідин
 
 </div>
 
@@ -1142,7 +1186,7 @@ class="mainButton">
 
 До подарунка
 
-<span id="giftLeft">
+<span id="giftCounter">
 
 4
 
