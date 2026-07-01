@@ -127,17 +127,7 @@ if(startButton){
     });
 
 }
-if(addMoreLiquidButton){
 
-    addMoreLiquidButton.addEventListener("click",()=>{
-
-        order.currentLiquid = {};
-
-        showScreen(1);
-
-    });
-
-}
 nextButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
