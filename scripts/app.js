@@ -6,13 +6,29 @@ GDE VAPE SHOP
 
 APP.JS
 
+Версія 2.0
+
 ==========================================================
 
 */
 
+"use strict";
+
+/* =======================================================
+
+   ЕКРАНИ
+
+======================================================= */
+
+const screens = [...document.querySelectorAll(".screen")];
+
 let currentScreen = 0;
 
-const screens = document.querySelectorAll(".screen");
+/* =======================================================
+
+   КНОПКИ
+
+======================================================= */
 
 const startButton = document.getElementById("startOrder");
 
@@ -20,9 +36,17 @@ const nextButtons = document.querySelectorAll(".nextButton");
 
 const backButtons = document.querySelectorAll(".backButton");
 
-/* ========================================= */
+/* =======================================================
+
+   ПОКАЗ ЕКРАНУ
+
+======================================================= */
 
 function showScreen(index){
+
+    if(index<0) return;
+
+    if(index>=screens.length) return;
 
     screens.forEach(screen=>{
 
@@ -36,27 +60,35 @@ function showScreen(index){
 
 }
 
-/* ========================================= */
+/* =======================================================
+
+   НАСТУПНИЙ
+
+======================================================= */
 
 function nextScreen(){
-
-    if(currentScreen>=screens.length-1) return;
 
     showScreen(currentScreen+1);
 
 }
 
-/* ========================================= */
+/* =======================================================
+
+   НАЗАД
+
+======================================================= */
 
 function previousScreen(){
-
-    if(currentScreen<=0) return;
 
     showScreen(currentScreen-1);
 
 }
 
-/* ========================================= */
+/* =======================================================
+
+   КНОПКА СТАРТ
+
+======================================================= */
 
 if(startButton){
 
@@ -68,7 +100,11 @@ if(startButton){
 
 }
 
-/* ========================================= */
+/* =======================================================
+
+   ДАЛІ
+
+======================================================= */
 
 nextButtons.forEach(button=>{
 
@@ -80,7 +116,11 @@ nextButtons.forEach(button=>{
 
 });
 
-/* ========================================= */
+/* =======================================================
+
+   НАЗАД
+
+======================================================= */
 
 backButtons.forEach(button=>{
 
@@ -92,14 +132,18 @@ backButtons.forEach(button=>{
 
 });
 
-/* ========================================= */
+/* =======================================================
+
+   ПЕРШИЙ ЕКРАН
+
+======================================================= */
 
 showScreen(0);
-/* ===========================================
+/* =======================================================
 
-   ВИБІР SALT / ORGANIC
+   ВИБІР ТИПУ НІКОТИНУ
 
-=========================================== */
+======================================================= */
 
 const nicotineCards = document.querySelectorAll("[data-base]");
 
@@ -107,23 +151,27 @@ nicotineCards.forEach(card=>{
 
     card.addEventListener("click",()=>{
 
-        nicotineCards.forEach(c=>c.classList.remove("active"));
+        nicotineCards.forEach(item=>{
+
+            item.classList.remove("active");
+
+        });
 
         card.classList.add("active");
 
         order.currentLiquid.nicotineType = card.dataset.base;
 
-        console.log(order);
+        renderStrengths();
 
     });
 
 });
 
-/* ===========================================
+/* =======================================================
 
    ВИБІР ОБ'ЄМУ
 
-=========================================== */
+======================================================= */
 
 const volumeCards = document.querySelectorAll("[data-volume]");
 
@@ -131,44 +179,103 @@ volumeCards.forEach(card=>{
 
     card.addEventListener("click",()=>{
 
-        volumeCards.forEach(c=>c.classList.remove("active"));
+        volumeCards.forEach(item=>{
+
+            item.classList.remove("active");
+
+        });
 
         card.classList.add("active");
 
         order.currentLiquid.volume = Number(card.dataset.volume);
 
-        console.log(order);
+        calculateCurrentLiquid();
+
+        updateCart();
 
     });
 
 });
+/* =======================================================
 
-/* ===========================================
+   ГЕНЕРАЦІЯ МІЦНОСТІ
 
-   ВИБІР МІЦНОСТІ
+======================================================= */
 
-=========================================== */
+const strengthContainer =
 
-const strengthCards = document.querySelectorAll("[data-strength]");
+document.querySelector("#screenStrength .cardList");
 
-strengthCards.forEach(card=>{
+function renderStrengths(){
 
-    card.addEventListener("click",()=>{
+    if(!strengthContainer) return;
 
-        strengthCards.forEach(c=>c.classList.remove("active"));
+    strengthContainer.innerHTML="";
 
-        card.classList.add("active");
+    let strengths=[];
 
-        order.currentLiquid.strength = Number(card.dataset.strength);
+    if(order.currentLiquid.nicotineType==="organic"){
 
-        console.log(order);
+        for(let i=0;i<=15;i++){
+
+            strengths.push(i);
+
+        }
+
+    }else{
+
+        strengths=[0,1,2,3,4,5,6.5];
+
+    }
+
+    strengths.forEach(value=>{
+
+        const card=document.createElement("div");
+
+        card.className="selectCard";
+
+        card.dataset.strength=value;
+
+        card.innerHTML=`
+
+            <h3>${value}</h3>
+
+            <p>мг/мл</p>
+
+        `;
+
+        card.addEventListener("click",()=>{
+
+            strengthContainer
+
+            .querySelectorAll(".selectCard")
+
+            .forEach(item=>{
+
+                item.classList.remove("active");
+
+            });
+
+            card.classList.add("active");
+
+            order.currentLiquid.strength=value;
+
+            calculateCurrentLiquid();
+
+            updateCart();
+
+        });
+
+        strengthContainer.appendChild(card);
 
     });
-/* ===========================================
 
-   ВИБІР ТИПУ РІДИНИ
+}
+/* =======================================================
 
-=========================================== */
+   ВИБІР РЕЖИМУ
+
+======================================================= */
 
 const recipesButton = document.getElementById("recipesButton");
 
@@ -198,27 +305,11 @@ if(mixButton){
 
 }
 
-/* ===========================================
-
-   ДОДАТИ РІДИНУ
-
-=========================================== */
-
-function addCurrentLiquid(){
-
-    addLiquidToOrder();
-
-    updateTotalPrice();
-
-    updateCart();
-
-}
-
-/* ===========================================
+/* =======================================================
 
    КОШИК
 
-=========================================== */
+======================================================= */
 
 const cartLiquids=document.getElementById("cartLiquids");
 
@@ -227,6 +318,8 @@ const cartTotal=document.getElementById("cartTotal");
 const giftCounter=document.getElementById("giftCounter");
 
 function updateCart(){
+
+    updateTotalPrice();
 
     if(cartLiquids){
 
@@ -244,97 +337,136 @@ function updateCart(){
 
         const left=giftProgress();
 
-        giftCounter.textContent=left;
+        if(left===0){
+
+            giftCounter.textContent="🎁";
+
+        }else{
+
+            giftCounter.textContent=left;
+
+        }
 
     }
 
 }
 
-/* ===========================================
+/* =======================================================
 
-   СТАРТОВИЙ СТАН
+   ДОДАТИ РІДИНУ
 
-=========================================== */
+======================================================= */
+
+function saveCurrentLiquid(){
+
+    calculateCurrentLiquid();
+
+    addLiquidToOrder();
+
+    updateCart();
+
+}
+
+/* =======================================================
+
+   СТАРТ
+
+======================================================= */
 
 updateCart();
-});
-/* ===========================================
+/* =======================================================
 
-   ГЕНЕРАЦІЯ МІЦНОСТІ
+   ДОСТАВКА
 
-=========================================== */
+======================================================= */
 
-const strengthContainer = document.querySelector("#screenStrength .cardList");
+const deliveryCards =
 
-function renderStrengths() {
+document.querySelectorAll(".deliveryCard");
 
-    if (!strengthContainer) return;
+const pickupSection =
 
-    strengthContainer.innerHTML = "";
+document.getElementById("pickupSection");
 
-    let strengths = [];
+const novaSection =
 
-    if (order.currentLiquid.nicotineType === "organic") {
+document.getElementById("novaSection");
 
-        strengths = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+const taxiSection =
 
-    } else {
+document.getElementById("taxiSection");
 
-        strengths = [0,1,2,3,4,5,6.5];
+deliveryCards.forEach((card,index)=>{
 
-    }
+    card.addEventListener("click",()=>{
 
-    strengths.forEach(value => {
+        deliveryCards.forEach(item=>{
 
-        const card = document.createElement("div");
-
-        card.className = "selectCard";
-
-        card.dataset.strength = value;
-
-        card.innerHTML = `
-
-            <h3>${value}</h3>
-
-            <p>мг/мл</p>
-
-        `;
-
-        card.addEventListener("click", () => {
-
-            document
-
-                .querySelectorAll("#screenStrength .selectCard")
-
-                .forEach(c => c.classList.remove("active"));
-
-            card.classList.add("active");
-
-            order.currentLiquid.strength = value;
-
-            calculateCurrentLiquid();
-
-            updateCart();
+            item.classList.remove("active");
 
         });
 
-        strengthContainer.appendChild(card);
+        card.classList.add("active");
+
+        pickupSection.classList.add("hidden");
+
+        novaSection.classList.add("hidden");
+
+        taxiSection.classList.add("hidden");
+
+        if(index===0){
+
+            order.delivery.type="pickup";
+
+            pickupSection.classList.remove("hidden");
+
+        }
+
+        if(index===1){
+
+            order.delivery.type="nova";
+
+            novaSection.classList.remove("hidden");
+
+        }
+
+        if(index===2){
+
+            order.delivery.type="taxi";
+
+            taxiSection.classList.remove("hidden");
+
+        }
 
     });
 
-}
+});
 
-/* ===========================================
+/* =======================================================
 
-   ПІСЛЯ ВИБОРУ ТИПУ НІКОТИНУ
+   МАГАЗИНИ
 
-=========================================== */
+======================================================= */
 
-nicotineCards.forEach(card => {
+const shopCards =
 
-    card.addEventListener("click", () => {
+document.querySelectorAll(".shopCard");
 
-        renderStrengths();
+shopCards.forEach(card=>{
+
+    card.addEventListener("click",()=>{
+
+        shopCards.forEach(item=>{
+
+            item.classList.remove("active");
+
+        });
+
+        card.classList.add("active");
+
+        order.delivery.shop =
+
+        card.innerText;
 
     });
 
