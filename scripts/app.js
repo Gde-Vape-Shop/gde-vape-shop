@@ -922,9 +922,7 @@ function renderCartItems(){
 
     order.liquids.forEach((liquid,index)=>{
 
-        const card =
-
-        document.createElement("div");
+        const card=document.createElement("div");
 
         card.className="cartItem";
 
@@ -934,21 +932,47 @@ function renderCartItems(){
 
                 <strong>
 
-    ${
+                    ${
 
-        liquid.isGift
+                        liquid.isGift
 
-       <span>
+                        ? "🎁 Подарунок"
 
-    ${
+                        : `${index+1}. ${liquid.nicotineType.toUpperCase()}`
 
-        liquid.isGift
+                    }
 
-        ? "0 грн"
+                </strong>
 
-        : `${liquid.price} грн`
+                <span>
 
-    }
+                    ${
+
+                        liquid.isGift
+
+                        ? "0 грн"
+
+                        : `${liquid.price} грн`
+
+                    }
+
+                </span>
+
+            </div>
+
+            <div>
+
+                ${liquid.volume} мл • ${liquid.strength} мг
+
+            </div>
+
+        `;
+
+        cartItems.appendChild(card);
+
+    });
+
+}
 
 </span>
 
