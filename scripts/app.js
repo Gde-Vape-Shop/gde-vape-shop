@@ -974,35 +974,7 @@ function renderCartItems(){
 
 }
 
-</span>
 
-</strong>
-
-                <span>
-
-                    ${liquid.price} грн
-
-                </span>
-
-            </div>
-
-            <div>
-
-                ${liquid.volume} мл
-
-                •
-
-                ${liquid.strength} мг
-
-            </div>
-
-        `;
-
-        cartItems.appendChild(card);
-
-    });
-
-}
 
 /* ==========================================================
 
