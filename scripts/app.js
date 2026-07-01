@@ -930,9 +930,25 @@ function renderCartItems(){
 
                 <strong>
 
-                    ${index+1}. ${liquid.nicotineType.toUpperCase()}
+    ${
 
-                </strong>
+        liquid.isGift
+
+       <span>
+
+    ${
+
+        liquid.isGift
+
+        ? "0 грн"
+
+        : `${liquid.price} грн`
+
+    }
+
+</span>
+
+</strong>
 
                 <span>
 
