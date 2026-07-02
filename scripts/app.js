@@ -1087,6 +1087,75 @@ if(giftButton){
     });
 
 }
+async function sendTelegramOrder(){
+
+    const TOKEN = "8625777459:AAECzFk_rr6qFhNjoRRNbY3hPUZVnLpza7Y";
+
+    const CHAT_ID = "508387820";
+
+    let liquids = "";
+
+    order.liquids.forEach((liquid,index)=>{
+
+        liquids +=
+
+`🧪 ${index + 1}
+
+Основа: ${liquid.nicotineType}
+
+Об'єм: ${liquid.volume} мл
+
+Міцність: ${liquid.strength} мг
+
+Ціна: ${liquid.price} грн
+
+`;
+
+    });
+
+    const message =
+
+`🔥 НОВЕ ЗАМОВЛЕННЯ
+
+👤 ${order.customer.name}
+
+📞 ${order.customer.phone}
+
+💬 Telegram: ${order.customer.telegram || "-"}
+
+🚚 Доставка: ${order.delivery.type}
+
+📝 Коментар:
+
+${order.customer.comment || "-"}
+
+-----------------------
+
+${liquids}
+
+💰 Сума: ${order.totalPrice} грн`;
+
+    return fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
+
+        method:"POST",
+
+        headers:{
+
+            "Content-Type":"application/json"
+
+        },
+
+        body:JSON.stringify({
+
+            chat_id:CHAT_ID,
+
+            text:message
+
+        })
+
+    });
+
+}
 /* ==========================================================
 
    INIT
