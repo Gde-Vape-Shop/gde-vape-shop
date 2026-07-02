@@ -1,1 +1,251 @@
-[]
+[
+
+  {
+
+    "name": "Strawberry",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Blueberry",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Raspberry",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Blackberry",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Black Currant",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Cherry",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Cranberry",
+
+    "category": "Ягоди"
+
+  },
+
+  {
+
+    "name": "Grape",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Apple",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Red Apple",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Green Apple",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Peach",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Apricot",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Pear",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Kiwi",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Mango",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Passion Fruit",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Pineapple",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Banana",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Watermelon",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Melon",
+
+    "category": "Фрукти"
+
+  },
+
+  {
+
+    "name": "Lemon",
+
+    "category": "Цитрус"
+
+  },
+
+  {
+
+    "name": "Lime",
+
+    "category": "Цитрус"
+
+  },
+
+  {
+
+    "name": "Orange",
+
+    "category": "Цитрус"
+
+  },
+
+  {
+
+    "name": "Grapefruit",
+
+    "category": "Цитрус"
+
+  },
+
+  {
+
+    "name": "Cola",
+
+    "category": "Напої"
+
+  },
+
+  {
+
+    "name": "Energy Drink",
+
+    "category": "Напої"
+
+  },
+
+  {
+
+    "name": "Green Tea",
+
+    "category": "Напої"
+
+  },
+
+  {
+
+    "name": "Lemonade",
+
+    "category": "Напої"
+
+  },
+
+  {
+
+    "name": "Mint",
+
+    "category": "Охолодження"
+
+  },
+
+  {
+
+    "name": "Cooling",
+
+    "category": "Охолодження"
+
+  }
+
+]
