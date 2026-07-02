@@ -1057,9 +1057,6 @@ if(finishOrderButton){
 
 ========================================================== */
 
-const giftButton =
-
-document.getElementById("giftButton");
 
 if(giftButton){
 
