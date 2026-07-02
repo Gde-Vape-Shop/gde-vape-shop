@@ -111,7 +111,6 @@ function showScreen(id){
     currentScreen = id;
 
 }
-
 function nextScreen(){
 
     switch(currentScreen){
@@ -186,31 +185,25 @@ function nextScreen(){
 
             break;
 
-        case "screenRecipes":
+        case "screenType":
 
-            if(!order.currentLiquid.recipe){
+            if(!order.currentLiquid.recipeType){
 
-                alert("Оберіть рецепт.");
-
-                return;
-
-            }
-
-            showScreen("screenSettings");
-
-            break;
-
-        case "screenCustomMix":
-
-            if(order.currentLiquid.flavors.length===0){
-
-                alert("Додайте хоча б один смак.");
+                alert("Оберіть тип рідини.");
 
                 return;
 
             }
 
-            showScreen("screenSettings");
+            if(order.currentLiquid.recipeType==="recipe"){
+
+                showScreen("screenRecipes");
+
+            }else{
+
+                showScreen("screenCustomMix");
+
+            }
 
             break;
 
@@ -228,23 +221,126 @@ function nextScreen(){
 
         case "screenDelivery":
 
+            if(!order.delivery.type){
+
+                alert("Оберіть спосіб доставки.");
+
+                return;
+
+            }
+
             showScreen("screenContact");
 
             break;
 
         case "screenContact":
 
-            document
+            if(finishOrderButton){
 
-                .getElementById("finishOrder")
+                finishOrderButton.click();
 
-                .click();
+            }
 
             break;
 
         default:
 
             break;
+
+    }
+
+}
+function previousScreen(){
+
+    switch(currentScreen){
+
+        case "screenBase":
+
+            showScreen("screenHome");
+
+            break;
+
+        case "screenRatio":
+
+            showScreen("screenBase");
+
+            break;
+
+        case "screenVolume":
+
+            if(order.currentLiquid.nicotineType==="organic"){
+
+                showScreen("screenRatio");
+
+            }else{
+
+                showScreen("screenBase");
+
+            }
+
+            break;
+
+        case "screenStrength":
+
+            showScreen("screenVolume");
+
+            break;
+
+        case "screenType":
+
+            showScreen("screenStrength");
+
+            break;
+
+        case "screenRecipes":
+
+        case "screenCustomMix":
+
+            showScreen("screenType");
+
+            break;
+
+        case "screenSettings":
+
+            if(order.currentLiquid.recipeType==="recipe"){
+
+                showScreen("screenRecipes");
+
+            }else{
+
+                showScreen("screenCustomMix");
+
+            }
+
+            break;
+
+        case "screenCart":
+
+            showScreen("screenSettings");
+
+            break;
+
+        case "screenDelivery":
+
+            showScreen("screenCart");
+
+            break;
+
+        case "screenContact":
+
+            showScreen("screenDelivery");
+
+            break;
+
+        case "screenSuccess":
+
+            showScreen("screenHome");
+
+            break;
+
+        default:
+
+            showScreen("screenHome");
 
     }
 
