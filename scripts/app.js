@@ -82,6 +82,9 @@ document.getElementById("finishOrder");
 const addAnotherLiquidButton =
 
 document.getElementById("addAnotherLiquid");
+const giftButton =
+
+document.getElementById("giftButton");
 /* ==========================================================
 
    SCREEN
@@ -793,7 +796,23 @@ function updateCart(){
         left===0 ? "🎁" : left;
 
     }
+if(giftButton){
 
+    if(order.liquids.length===4){
+
+        giftButton.classList.remove("hidden");
+
+        addAnotherLiquidButton.classList.add("hidden");
+
+    }else{
+
+        giftButton.classList.add("hidden");
+
+        addAnotherLiquidButton.classList.remove("hidden");
+
+    }
+
+}
 }
 /* ==========================================================
 
