@@ -871,11 +871,7 @@ function addCurrentLiquid(){
 
     ){
 
-        alert(
-
-            "Спочатку оберіть основу, об'єм та міцність."
-
-        );
+        alert("Спочатку заповніть усі параметри рідини.");
 
         return;
 
@@ -883,7 +879,19 @@ function addCurrentLiquid(){
 
     calculateCurrentLiquid();
 
-    addLiquidToOrder();
+    if(order.isEditing){
+
+        updateLiquid(order.editingLiquid);
+
+        order.isEditing = false;
+
+        order.editingLiquid = null;
+
+    }else{
+
+        addLiquidToOrder();
+
+    }
 
     updateCart();
 
@@ -892,6 +900,38 @@ function addCurrentLiquid(){
     renderStrengths();
 
     renderSelectedFlavors();
+
+    updateSliderLabels();
+
+    document
+
+        .querySelectorAll(".selectCard.active")
+
+        .forEach(card=>{
+
+            card.classList.remove("active");
+
+        });
+
+    const sliders = [
+
+        sweetness,
+
+        cold,
+
+        acid
+
+    ];
+
+    sliders.forEach(slider=>{
+
+        if(slider){
+
+            slider.value = 5;
+
+        }
+
+    });
 
     updateSliderLabels();
 
