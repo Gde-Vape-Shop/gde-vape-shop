@@ -1101,7 +1101,7 @@ async function sendTelegramOrder(){
 
         let flavors = "";
 
-if(liquid.recipeType === "recipe"){
+if(liquid.recipe){
 
     flavors = `🏷 Тип:
 
