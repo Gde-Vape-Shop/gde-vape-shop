@@ -6,7 +6,7 @@ GDE VAPE SHOP
 
 APP.JS
 
-Version 1.0
+Version 2.0
 
 ==========================================================
 
@@ -20,21 +20,49 @@ Version 1.0
 
 ========================================================== */
 
-const screens = [...document.querySelectorAll(".screen")];
+const screens = {};
 
-const nextButtons = document.querySelectorAll(".nextButton");
+document.querySelectorAll(".screen").forEach(screen => {
 
-const backButtons = document.querySelectorAll(".backButton");
+    screens[screen.id] = screen;
 
-const startButton = document.getElementById("startOrder");
+});
 
-const nicotineCards = document.querySelectorAll("[data-base]");
+const nextButtons =
 
-const volumeCards = document.querySelectorAll("[data-volume]");
+document.querySelectorAll(".nextButton");
+
+const backButtons =
+
+document.querySelectorAll(".backButton");
+
+const startButton =
+
+document.getElementById("startOrder");
+
+const nicotineCards =
+
+document.querySelectorAll("[data-base]");
+
+const ratioCards =
+
+document.querySelectorAll("[data-ratio]");
+
+const volumeCards =
+
+document.querySelectorAll("[data-volume]");
 
 const strengthContainer =
 
 document.querySelector("#screenStrength .cardList");
+
+const cartItems =
+
+document.getElementById("cartItems");
+
+const cartPrice =
+
+document.getElementById("cartPrice");
 
 const cartLiquids =
 
@@ -48,21 +76,9 @@ const giftCounter =
 
 document.getElementById("giftCounter");
 
-const cartPrice =
+const finishOrderButton =
 
-document.getElementById("cartPrice");
-
-const cartItems =
-
-document.getElementById("cartItems");
-
-/* ==========================================================
-
-   STATE
-
-========================================================== */
-
-let currentScreen = 0;
+document.getElementById("finishOrder");
 
 /* ==========================================================
 
@@ -70,43 +86,43 @@ let currentScreen = 0;
 
 ========================================================== */
 
-function showScreen(index){
+let currentScreen = "screenHome";
 
-    if(index<0) return;
+function showScreen(id){
 
-    if(index>=screens.length) return;
+    if(!screens[id]){
 
-    screens.forEach(screen=>{
+        console.error("Screen not found:", id);
+
+        return;
+
+    }
+
+    Object.values(screens).forEach(screen=>{
 
         screen.classList.remove("active");
 
     });
 
-    screens[index].classList.add("active");
+    screens[id].classList.add("active");
 
-    currentScreen=index;
+    currentScreen = id;
 
 }
 
-/* ==========================================================
+function nextScreen(){
 
-   NEXT
+    switch(currentScreen){
 
-========================================================== */
+        case "screenHome":
 
-function nextScreen() {
-
-    switch (currentScreen) {
-
-        case 0:
-
-            showScreen(1);
+            showScreen("screenBase");
 
             break;
 
-        case 1:
+        case "screenBase":
 
-            if (!order.currentLiquid.nicotineType) {
+            if(!order.currentLiquid.nicotineType){
 
                 alert("Оберіть основу.");
 
@@ -114,27 +130,35 @@ function nextScreen() {
 
             }
 
-            if (order.currentLiquid.nicotineType === "organic") {
+            if(order.currentLiquid.nicotineType==="organic"){
 
-                showScreen(2);
+                showScreen("screenRatio");
 
-            } else {
+            }else{
 
-                showScreen(3);
+                showScreen("screenVolume");
 
             }
 
             break;
 
-        case 2:
+        case "screenRatio":
 
-            showScreen(3);
+            if(!order.currentLiquid.ratio){
+
+                alert("Оберіть співвідношення.");
+
+                return;
+
+            }
+
+            showScreen("screenVolume");
 
             break;
 
-        case 3:
+        case "screenVolume":
 
-            if (!order.currentLiquid.volume) {
+            if(!order.currentLiquid.volume){
 
                 alert("Оберіть об'єм.");
 
@@ -142,13 +166,13 @@ function nextScreen() {
 
             }
 
-            showScreen(4);
+            showScreen("screenStrength");
 
             break;
 
-        case 4:
+        case "screenStrength":
 
-            if (order.currentLiquid.strength === null) {
+            if(order.currentLiquid.strength===null){
 
                 alert("Оберіть міцність.");
 
@@ -156,65 +180,9 @@ function nextScreen() {
 
             }
 
-            showScreen(5);
+            showScreen("screenType");
 
             break;
-
-        case 5:
-
-            break;
-
-        case 6:
-
-            showScreen(7);
-
-            break;
-
-        case 7:
-
-            addCurrentLiquid();
-
-            break;
-
-        case 8:
-
-            if (!order.delivery.type) {
-
-                alert("Оберіть спосіб доставки.");
-
-                return;
-
-            }
-
-            showScreen(9);
-
-            break;
-
-        case 9:
-
-            const name =
-
-                document.getElementById("customerName").value.trim();
-
-            const phone =
-
-                document.getElementById("customerPhone").value.trim();
-
-            if (!name || !phone) {
-
-                alert("Введіть ім'я та телефон.");
-
-                return;
-
-            }
-
-            finishOrderButton.click();
-
-            break;
-
-        default:
-
-            showScreen(currentScreen + 1);
 
     }
 
@@ -227,7 +195,91 @@ function nextScreen() {
 
 function previousScreen(){
 
-    showScreen(currentScreen-1);
+    switch(currentScreen){
+
+        case "screenBase":
+
+            showScreen("screenHome");
+
+            break;
+
+        case "screenRatio":
+
+            showScreen("screenBase");
+
+            break;
+
+        case "screenVolume":
+
+            if(order.currentLiquid.nicotineType==="organic"){
+
+                showScreen("screenRatio");
+
+            }else{
+
+                showScreen("screenBase");
+
+            }
+
+            break;
+
+        case "screenStrength":
+
+            showScreen("screenVolume");
+
+            break;
+
+        case "screenType":
+
+            showScreen("screenStrength");
+
+            break;
+
+        case "screenRecipes":
+
+        case "screenCustomMix":
+
+            showScreen("screenType");
+
+            break;
+
+        case "screenSettings":
+
+            if(order.currentLiquid.recipeType==="recipe"){
+
+                showScreen("screenRecipes");
+
+            }else{
+
+                showScreen("screenCustomMix");
+
+            }
+
+            break;
+
+        case "screenCart":
+
+            showScreen("screenSettings");
+
+            break;
+
+        case "screenDelivery":
+
+            showScreen("screenCart");
+
+            break;
+
+        case "screenContact":
+
+            showScreen("screenDelivery");
+
+            break;
+
+        default:
+
+            showScreen("screenHome");
+
+    }
 
 }
 
@@ -237,19 +289,19 @@ function previousScreen(){
 
 ========================================================== */
 
-if (startButton) {
+if(startButton){
 
-    startButton.addEventListener("click", () => {
+    startButton.addEventListener("click",()=>{
 
-        showScreen(1);
+        showScreen("screenBase");
 
     });
 
 }
 
-nextButtons.forEach(button => {
+nextButtons.forEach(button=>{
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click",()=>{
 
         nextScreen();
 
@@ -257,9 +309,9 @@ nextButtons.forEach(button => {
 
 });
 
-backButtons.forEach(button => {
+backButtons.forEach(button=>{
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click",()=>{
 
         previousScreen();
 
@@ -268,7 +320,7 @@ backButtons.forEach(button => {
 });
 /* ==========================================================
 
-   NICOTINE
+   BASE
 
 ========================================================== */
 
@@ -288,7 +340,43 @@ nicotineCards.forEach(card=>{
 
         card.dataset.base;
 
+        if(order.currentLiquid.nicotineType==="salt"){
+
+            order.currentLiquid.ratio = null;
+
+        }
+
         renderStrengths();
+
+        calculateCurrentLiquid();
+
+        updateCart();
+
+    });
+
+});
+
+/* ==========================================================
+
+   RATIO
+
+========================================================== */
+
+ratioCards.forEach(card=>{
+
+    card.addEventListener("click",()=>{
+
+        ratioCards.forEach(item=>{
+
+            item.classList.remove("active");
+
+        });
+
+        card.classList.add("active");
+
+        order.currentLiquid.ratio =
+
+        card.dataset.ratio;
 
         calculateCurrentLiquid();
 
@@ -327,7 +415,6 @@ volumeCards.forEach(card=>{
     });
 
 });
-
 /* ==========================================================
 
    STRENGTH
@@ -338,9 +425,9 @@ function renderStrengths(){
 
     if(!strengthContainer) return;
 
-    strengthContainer.innerHTML="";
+    strengthContainer.innerHTML = "";
 
-    let strengths=[];
+    let strengths = [];
 
     if(order.currentLiquid.nicotineType==="organic"){
 
@@ -352,19 +439,19 @@ function renderStrengths(){
 
     }else{
 
-        strengths=[0,1,2,3,4,5,6.5];
+        strengths = [0,1,2,3,4,5,6.5];
 
     }
 
     strengths.forEach(value=>{
 
-        const card=document.createElement("div");
+        const card = document.createElement("div");
 
-        card.className="selectCard";
+        card.className = "selectCard";
 
-        card.dataset.strength=value;
+        card.dataset.strength = value;
 
-        card.innerHTML=`
+        card.innerHTML = `
 
             <h3>${value}</h3>
 
@@ -386,7 +473,7 @@ function renderStrengths(){
 
             card.classList.add("active");
 
-            order.currentLiquid.strength=value;
+            order.currentLiquid.strength = value;
 
             calculateCurrentLiquid();
 
@@ -401,7 +488,7 @@ function renderStrengths(){
 }
 /* ==========================================================
 
-   RECIPE TYPE
+   TYPE
 
 ========================================================== */
 
@@ -417,9 +504,9 @@ if(recipesButton){
 
     recipesButton.addEventListener("click",()=>{
 
-        order.currentLiquid.recipeType="recipe";
+        order.currentLiquid.recipeType = "recipe";
 
-        showScreen(5);
+        showScreen("screenRecipes");
 
     });
 
@@ -429,14 +516,167 @@ if(mixButton){
 
     mixButton.addEventListener("click",()=>{
 
-        order.currentLiquid.recipeType="custom";
+        order.currentLiquid.recipeType = "custom";
 
-        showScreen(6);
+        showScreen("screenCustomMix");
+
+    });
+
+}
+/* ==========================================================
+
+   RECIPES
+
+========================================================== */
+
+function selectRecipe(recipe){
+
+    order.currentLiquid.recipe = recipe;
+
+    order.currentLiquid.flavors = [...recipe.flavors];
+
+    showScreen("screenSettings");
+
+}
+
+function renderRecipeCards(list){
+
+    const container =
+
+    document.getElementById("recipesContainer");
+
+    if(!container) return;
+
+    container.innerHTML = "";
+
+    list.forEach(recipe=>{
+
+        const card = document.createElement("div");
+
+        card.className = "recipeCard";
+
+        card.innerHTML = `
+
+            <h3>${recipe.name}</h3>
+
+            <p>${recipe.category}</p>
+
+            <button class="mainButton">
+
+                Обрати
+
+            </button>
+
+        `;
+
+        card.querySelector("button")
+
+        .addEventListener("click",()=>{
+
+            selectRecipe(recipe);
+
+        });
+
+        container.appendChild(card);
 
     });
 
 }
 
+if(typeof recipes!=="undefined"){
+
+    renderRecipeCards(recipes);
+
+}
+/* ==========================================================
+
+   CUSTOM MIX
+
+========================================================== */
+
+const addFlavorButton =
+
+document.getElementById("addFlavor");
+
+const selectedFlavors =
+
+document.getElementById("selectedFlavors");
+
+function renderSelectedFlavors(){
+
+    if(!selectedFlavors) return;
+
+    selectedFlavors.innerHTML = "";
+
+    order.currentLiquid.flavors.forEach((flavor,index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "selectedFlavor";
+
+        item.innerHTML = `
+
+            <span>
+
+                ${typeof flavor==="string" ? flavor : flavor.name}
+
+            </span>
+
+            <button>
+
+                ✕
+
+            </button>
+
+        `;
+
+        item.querySelector("button")
+
+        .addEventListener("click",()=>{
+
+            order.currentLiquid.flavors.splice(index,1);
+
+            renderSelectedFlavors();
+
+        });
+
+        selectedFlavors.appendChild(item);
+
+    });
+
+}
+
+if(addFlavorButton){
+
+    addFlavorButton.addEventListener("click",()=>{
+
+        if(order.currentLiquid.flavors.length===0){
+
+            alert("Оберіть хоча б один смак.");
+
+            return;
+
+        }
+
+        showScreen("screenSettings");
+
+    });
+
+}
+
+if(typeof addFlavor==="function"){
+
+    const originalAddFlavor = addFlavor;
+
+    addFlavor = function(flavor){
+
+        originalAddFlavor(flavor);
+
+        renderSelectedFlavors();
+
+    };
+
+}
 /* ==========================================================
 
    SLIDERS
@@ -467,103 +707,58 @@ const acidValue =
 
 document.getElementById("acidValue");
 
-function bindSlider(slider,label,key){
+function updateSliderLabels(){
 
-    if(!slider || !label) return;
+    if(sweetValue){
+
+        sweetValue.textContent =
+
+        order.currentLiquid.sweetness;
+
+    }
+
+    if(coldValue){
+
+        coldValue.textContent =
+
+        order.currentLiquid.cold;
+
+    }
+
+    if(acidValue){
+
+        acidValue.textContent =
+
+        order.currentLiquid.acid;
+
+    }
+
+}
+
+function bindSlider(slider,key){
+
+    if(!slider) return;
 
     slider.addEventListener("input",()=>{
 
-        label.textContent=slider.value;
-
-        order.currentLiquid[key]=
+        order.currentLiquid[key] =
 
         Number(slider.value);
+
+        updateSliderLabels();
 
     });
 
 }
 
-bindSlider(
+bindSlider(sweetness,"sweetness");
 
-    sweetness,
+bindSlider(cold,"cold");
 
-    sweetValue,
-
-    "sweetness"
-
-);
-
-bindSlider(
-
-    cold,
-
-    coldValue,
-
-    "cold"
-
-);
-
-bindSlider(
-
-    acid,
-
-    acidValue,
-
-    "acid"
-
-);
-
+bindSlider(acid,"acid");
 /* ==========================================================
 
    CART
-
-========================================================== */
-
-function updateCart(){
-
-    updateTotalPrice();
-
-    if(cartLiquids){
-
-        cartLiquids.textContent=
-
-        order.liquids.length;
-
-    }
-
-    if(cartTotal){
-
-        cartTotal.textContent=
-
-        order.totalPrice+" грн";
-
-    }
-
-    if(cartPrice){
-
-        cartPrice.textContent=
-
-        order.totalPrice+" грн";
-
-    }
-
-    if(giftCounter){
-
-        const left=giftProgress();
-
-        giftCounter.textContent=
-
-        left===0 ? "🎁" : left;
-
-    }
-
-    renderCart();
-
-}
-
-/* ==========================================================
-
-   RENDER CART
 
 ========================================================== */
 
@@ -571,43 +766,89 @@ function renderCart(){
 
     if(!cartItems) return;
 
-    cartItems.innerHTML="";
+    cartItems.innerHTML = "";
 
     order.liquids.forEach((liquid,index)=>{
 
-        const item=
+        const card = document.createElement("div");
 
-        document.createElement("div");
+        card.className = "cartItem";
 
-        item.className="cartItem";
+        card.innerHTML = `
 
-        item.innerHTML=`
+            <div class="cartItemTop">
 
-            <h3>
+                <strong>
 
-            ${liquid.nicotineType}
+                    ${index+1}. ${liquid.nicotineType.toUpperCase()}
 
-            ${liquid.volume} мл
+                </strong>
 
-            </h3>
+                <span>
 
-            <p>
+                    ${liquid.price} грн
 
-            ${liquid.strength} мг
+                </span>
 
-            </p>
+            </div>
 
-            <strong>
+            <div>
 
-            ${liquid.price} грн
+                ${liquid.volume} мл
 
-            </strong>
+                •
+
+                ${liquid.strength} мг
+
+            </div>
 
         `;
 
-        cartItems.appendChild(item);
+        cartItems.appendChild(card);
 
     });
+
+}
+
+function updateCart(){
+
+    updateTotalPrice();
+
+    renderCart();
+
+    if(cartLiquids){
+
+        cartLiquids.textContent =
+
+        order.liquids.length;
+
+    }
+
+    if(cartTotal){
+
+        cartTotal.textContent =
+
+        order.totalPrice + " грн";
+
+    }
+
+    if(cartPrice){
+
+        cartPrice.textContent =
+
+        order.totalPrice + " грн";
+
+    }
+
+    if(giftCounter){
+
+        const left = giftProgress();
+
+        giftCounter.textContent =
+
+        left===0 ? "🎁" : left;
+
+    }
 
 }
 /* ==========================================================
@@ -628,7 +869,11 @@ function addCurrentLiquid(){
 
     ){
 
-        alert("Спочатку оберіть основу, об'єм та міцність.");
+        alert(
+
+            "Спочатку оберіть основу, об'єм та міцність."
+
+        );
 
         return;
 
@@ -642,10 +887,15 @@ function addCurrentLiquid(){
 
     resetCurrentLiquid();
 
-    showScreen(8);
+    renderStrengths();
+
+    renderSelectedFlavors();
+
+    updateSliderLabels();
+
+    showScreen("screenCart");
 
 }
-
 /* ==========================================================
 
    DELIVERY
@@ -718,12 +968,6 @@ deliveryCards.forEach((card,index)=>{
 
 });
 
-/* ==========================================================
-
-   SHOPS
-
-========================================================== */
-
 const shopCards =
 
 document.querySelectorAll(".shopCard");
@@ -747,16 +991,11 @@ shopCards.forEach(card=>{
     });
 
 });
-
 /* ==========================================================
 
-   FINISH ORDER
+   CONTACT
 
 ========================================================== */
-
-const finishOrderButton =
-
-document.getElementById("finishOrder");
 
 if(finishOrderButton){
 
@@ -764,711 +1003,54 @@ if(finishOrderButton){
 
         order.customer.name =
 
-        document.getElementById("customerName").value;
+        document
+
+        .getElementById("customerName")
+
+        .value
+
+        .trim();
 
         order.customer.phone =
 
-        document.getElementById("customerPhone").value;
+        document
+
+        .getElementById("customerPhone")
+
+        .value
+
+        .trim();
 
         order.customer.telegram =
 
-        document.getElementById("customerTelegram").value;
+        document
+
+        .getElementById("customerTelegram")
+
+        .value
+
+        .trim();
 
         order.customer.comment =
 
-        document.getElementById("customerComment").value;
+        document
+
+        .getElementById("customerComment")
+
+        .value
+
+        .trim();
 
         console.log(order);
 
-        showScreen(10);
+        showScreen("screenSuccess");
 
     });
 
 }
-
 /* ==========================================================
 
-   START
-
-========================================================== */
-
-updateCart();
-
-renderStrengths();
-
-showScreen(0);
-/* ==========================================================
-
-   CART ACTIONS
-
-========================================================== */
-
-const addFlavorButton =
-
-document.getElementById("addFlavor");
-
-if(addFlavorButton){
-
-    addFlavorButton.addEventListener("click",()=>{
-
-        if(order.currentLiquid.flavors.length===0){
-
-            alert("Оберіть хоча б один смак.");
-
-            return;
-
-        }
-
-        showScreen(7);
-
-    });
-
-}
-
-/* ==========================================================
-
-   ADD TO CART BUTTON
-
-========================================================== */
-
-
-
-/* ==========================================================
-
-   CART COUNTER
-
-========================================================== */
-
-function refreshBottomBar(){
-
-    cartLiquids.textContent =
-
-    order.liquids.length;
-
-    cartTotal.textContent =
-
-    order.totalPrice + " грн";
-
-    const left = giftProgress();
-
-    if(left>0){
-
-        giftCounter.textContent = left;
-
-    }else{
-
-        giftCounter.textContent = "🎁";
-
-    }
-const giftButton =
-
-document.getElementById("giftButton");
-
-if(giftButton){
-
-    const hasGift =
-
-    order.liquids.some(liquid=>liquid.isGift);
-
-    if(order.liquids.length>=4 && !hasGift){
-
-        giftButton.classList.remove("hidden");
-
-    }else{
-
-        giftButton.classList.add("hidden");
-
-    }
-
-}
-}
-
-/* ==========================================================
-
-   UPDATE UI
-
-========================================================== */
-
-function refreshUI(){
-
-    updateCart();
-
-    refreshBottomBar();
-
-}
-
-/* ==========================================================
-
-   AUTO UPDATE
-
-========================================================== */
-
-setInterval(()=>{
-
-    refreshBottomBar();
-
-},300);
-/* ==========================================================
-
-   LIVE PRICE
-
-========================================================== */
-
-function updateCurrentPrice(){
-
-    if(
-
-        !order.currentLiquid.nicotineType ||
-
-        !order.currentLiquid.volume ||
-
-        order.currentLiquid.strength===null
-
-    ){
-
-        return;
-
-    }
-
-    calculateCurrentLiquid();
-
-    const price =
-
-    order.currentLiquid.price;
-
-    if(cartPrice){
-
-        cartPrice.textContent =
-
-        price + " грн";
-
-    }
-
-}
-
-/* ==========================================================
-
-   OBSERVERS
-
-========================================================== */
-
-document.addEventListener("click",(event)=>{
-
-    if(
-
-        event.target.closest("[data-base]") ||
-
-        event.target.closest("[data-volume]") ||
-
-        event.target.closest("[data-strength]")
-
-    ){
-
-        setTimeout(()=>{
-
-            updateCurrentPrice();
-
-        },20);
-
-    }
-
-});
-
-/* ==========================================================
-
-   CART RENDER
-
-========================================================== */
-
-function renderCartItems(){
-
-    if(!cartItems) return;
-
-    cartItems.innerHTML="";
-
-    order.liquids.forEach((liquid,index)=>{
-
-        const card=document.createElement("div");
-
-        card.className="cartItem";
-
-        card.innerHTML=`
-
-            <div class="cartItemTop">
-
-                <strong>
-
-                    ${
-
-                        liquid.isGift
-
-                        ? "🎁 Подарунок"
-
-                        : `${index+1}. ${liquid.nicotineType.toUpperCase()}`
-
-                    }
-
-                </strong>
-
-                <span>
-
-                    ${
-
-                        liquid.isGift
-
-                        ? "0 грн"
-
-                        : `${liquid.price} грн`
-
-                    }
-
-                </span>
-
-            </div>
-
-            <div>
-
-                ${liquid.volume} мл • ${liquid.strength} мг
-
-            </div>
-
-        `;
-
-        cartItems.appendChild(card);
-
-    });
-
-}
-
-
-
-/* ==========================================================
-
-   GLOBAL UPDATE
-
-========================================================== */
-
-const oldUpdateCart = updateCart;
-
-updateCart = function(){
-
-    oldUpdateCart();
-
-    renderCartItems();
-
-    refreshBottomBar();
-
-};
-/* ==========================================================
-
-   LIVE SLIDERS
-
-========================================================== */
-
-function updateSliderValues(){
-
-    if(sweetValue){
-
-        sweetValue.textContent =
-
-        order.currentLiquid.sweetness;
-
-    }
-
-    if(coldValue){
-
-        coldValue.textContent =
-
-        order.currentLiquid.cold;
-
-    }
-
-    if(acidValue){
-
-        acidValue.textContent =
-
-        order.currentLiquid.acid;
-
-    }
-
-}
-
-if(sweetness){
-
-    sweetness.addEventListener("input",()=>{
-
-        order.currentLiquid.sweetness =
-
-        Number(sweetness.value);
-
-        updateSliderValues();
-
-    });
-
-}
-
-if(cold){
-
-    cold.addEventListener("input",()=>{
-
-        order.currentLiquid.cold =
-
-        Number(cold.value);
-
-        updateSliderValues();
-
-    });
-
-}
-
-if(acid){
-
-    acid.addEventListener("input",()=>{
-
-        order.currentLiquid.acid =
-
-        Number(acid.value);
-
-        updateSliderValues();
-
-    });
-
-}
-
-/* ==========================================================
-
-   RESET CURRENT LIQUID UI
-
-========================================================== */
-
-function resetLiquidUI(){
-
-    volumeCards.forEach(card=>{
-
-        card.classList.remove("active");
-
-    });
-
-    nicotineCards.forEach(card=>{
-
-        card.classList.remove("active");
-
-    });
-
-    if(strengthContainer){
-
-        strengthContainer.innerHTML="";
-
-    }
-
-    if(sweetness){
-
-        sweetness.value=5;
-
-    }
-
-    if(cold){
-
-        cold.value=5;
-
-    }
-
-    if(acid){
-
-        acid.value=5;
-
-    }
-
-    updateSliderValues();
-
-}
-
-/* ==========================================================
-
-   AFTER ADD
-
-========================================================== */
-
-const oldAddLiquid = addCurrentLiquid;
-
-addCurrentLiquid = function(){
-
-    oldAddLiquid();
-
-    resetLiquidUI();
-
-};
-/* ==========================================================
-
-   RECIPES
-
-========================================================== */
-
-const recipeContainer =
-
-document.getElementById("recipesContainer");
-
-function selectRecipe(recipe){
-
-    order.currentLiquid.recipe = recipe;
-
-    order.currentLiquid.flavors = [...recipe.flavors];
-
-    showScreen(7);
-
-}
-
-function renderRecipeCards(list){
-
-    if(!recipeContainer) return;
-
-    recipeContainer.innerHTML="";
-
-    list.forEach(recipe=>{
-
-        const card=document.createElement("div");
-
-        card.className="recipeCard";
-
-        card.innerHTML=`
-
-            <h3>${recipe.name}</h3>
-
-            <p>${recipe.category}</p>
-
-            <button class="mainButton">
-
-                Обрати
-
-            </button>
-
-        `;
-
-        card
-
-        .querySelector("button")
-
-        .addEventListener("click",()=>{
-
-            selectRecipe(recipe);
-
-        });
-
-        recipeContainer.appendChild(card);
-
-    });
-
-}
-
-/* ==========================================================
-
-   FLAVORS
-
-========================================================== */
-
-const selectedFlavors =
-
-document.getElementById("selectedFlavors");
-
-function renderSelectedFlavors(){
-
-    if(!selectedFlavors) return;
-
-    selectedFlavors.innerHTML="";
-
-    order.currentLiquid.flavors.forEach((flavor,index)=>{
-
-        const item=document.createElement("div");
-
-        item.className="selectedFlavor";
-
-        item.innerHTML=`
-
-            <span>
-
-                ${flavor.name}
-
-            </span>
-
-            <button>
-
-                ✕
-
-            </button>
-
-        `;
-
-        item
-
-        .querySelector("button")
-
-        .addEventListener("click",()=>{
-
-            order.currentLiquid.flavors.splice(index,1);
-
-            renderSelectedFlavors();
-
-        });
-
-        selectedFlavors.appendChild(item);
-
-    });
-
-}
-
-/* ==========================================================
-
-   ADD FLAVOR
-
-========================================================== */
-
-const oldAddFlavor = addFlavor;
-
-addFlavor=function(flavor){
-
-    oldAddFlavor(flavor);
-
-    renderSelectedFlavors();
-
-};
-
-/* ==========================================================
-
-   START DATA
-
-========================================================== */
-
-if(typeof recipes!=="undefined"){
-
-    renderRecipeCards(recipes);
-
-}
-
-renderSelectedFlavors();
-/* ==========================================================
-
-   TELEGRAM DATA
-
-========================================================== */
-
-function buildOrderMessage(){
-
-    let message = "";
-
-    message += "🧪 НОВЕ ЗАМОВЛЕННЯ\n\n";
-
-    order.liquids.forEach((liquid,index)=>{
-
-        message += `#${index+1}\n`;
-
-        message += `Основа: ${liquid.nicotineType}\n`;
-
-        message += `Об'єм: ${liquid.volume} мл\n`;
-
-        message += `Міцність: ${liquid.strength} мг\n`;
-
-        message += `Ціна: ${liquid.price} грн\n`;
-
-        if(liquid.flavors.length){
-
-            message += "Смаки:\n";
-
-            liquid.flavors.forEach(flavor=>{
-
-                if(typeof flavor==="string"){
-
-                    message += "• "+flavor+"\n";
-
-                }else{
-
-                    message += "• "+flavor.name+"\n";
-
-                }
-
-            });
-
-        }
-
-        message += "\n";
-
-    });
-
-    message += "💰 Загальна сума: ";
-
-    message += order.totalPrice+" грн\n\n";
-
-    message += "🚚 Доставка: ";
-
-    message += order.delivery.type+"\n";
-
-    if(order.delivery.shop){
-
-        message += "🏪 "+order.delivery.shop+"\n";
-
-    }
-
-    message += "\n";
-
-    message += "👤 ";
-
-    message += order.customer.name+"\n";
-
-    message += "📞 ";
-
-    message += order.customer.phone+"\n";
-
-    if(order.customer.telegram){
-
-        message += "Telegram: ";
-
-        message += order.customer.telegram+"\n";
-
-    }
-
-    if(order.customer.comment){
-
-        message += "\n💬 ";
-
-        message += order.customer.comment;
-
-    }
-
-    return message;
-
-}
-
-/* ==========================================================
-
-   DEBUG
-
-========================================================== */
-
-window.order = order;
-
-window.showOrder = function(){
-
-    console.log(order);
-
-    console.log(buildOrderMessage());
-
-};
-
-/* ==========================================================
-
-   INIT
-
-========================================================== */
-
-refreshBottomBar();
-
-updateSliderValues();
-
-renderSelectedFlavors();
-
-renderCartItems();
-/* ==========================================================
-
-   GIFT LIQUID
+   GIFT
 
 ========================================================== */
 
@@ -1480,12 +1062,33 @@ if(giftButton){
 
     giftButton.addEventListener("click",()=>{
 
-        order.giftLiquid=true;
+        order.giftLiquid = true;
 
         resetCurrentLiquid();
 
-        showScreen(1);
+        renderStrengths();
+
+        renderSelectedFlavors();
+
+        updateSliderLabels();
+
+        showScreen("screenBase");
 
     });
 
 }
+/* ==========================================================
+
+   INIT
+
+========================================================== */
+
+renderStrengths();
+
+renderSelectedFlavors();
+
+updateSliderLabels();
+
+updateCart();
+
+showScreen("screenHome");
