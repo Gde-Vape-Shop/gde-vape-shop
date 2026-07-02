@@ -1,1 +1,684 @@
-[]
+[
+
+  {
+
+    "name": "NESTEA",
+
+    "category": "Напої",
+
+    "description": "Освіжаючий зелений чай з фруктово-ягідними нотками та солодким присмаком джему",
+
+    "flavors": [
+
+      "Green Tea",
+
+      "Forest Berries",
+
+      "Jam"
+
+    ]
+
+  },
+
+  {
+
+    "name": "GRAPE CURRANT",
+
+    "category": "Ягідні",
+
+    "description": "Освіжаючі фруктові ноти винограду та чорної смородини з прохолодним післясмаком",
+
+    "flavors": [
+
+      "Grape",
+
+      "Black Currant",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "CLOVER",
+
+    "category": "Десертні",
+
+    "description": "Полуниця, вершки та банановий крем",
+
+    "flavors": [
+
+      "Strawberry",
+
+      "Cream",
+
+      "Banana"
+
+    ]
+
+  },
+
+  {
+
+    "name": "BIG BOTTLE",
+
+    "category": "Фруктові",
+
+    "description": "Персик та ожина з кисло-солодким післясмаком",
+
+    "flavors": [
+
+      "Peach",
+
+      "Blackberry"
+
+    ]
+
+  },
+
+  {
+
+    "name": "FUJI",
+
+    "category": "Фруктові",
+
+    "description": "Виноградна цукерка зі смаком яблука Фуджі",
+
+    "flavors": [
+
+      "Fuji Apple",
+
+      "Candy Grape"
+
+    ]
+
+  },
+
+  {
+
+    "name": "LEMONADE KIWI",
+
+    "category": "Напої",
+
+    "description": "Класичний лимонад та соковитий ківі",
+
+    "flavors": [
+
+      "Lemonade",
+
+      "Kiwi"
+
+    ]
+
+  },
+  {
+
+    "name": "CHERRY WATERMELON",
+
+    "category": "Фруктові",
+
+    "description": "Вишня, гранат, кавун, полуниця та легкий ментол",
+
+    "flavors": [
+
+      "Cherry",
+
+      "Pomegranate",
+
+      "Watermelon",
+
+      "Strawberry",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "MOJITO CURRANT",
+
+    "category": "Напої",
+
+    "description": "Чорна та червона смородина з м'ятою і лаймом",
+
+    "flavors": [
+
+      "Black Currant",
+
+      "Red Currant",
+
+      "Mint",
+
+      "Lime"
+
+    ]
+
+  },
+
+  {
+
+    "name": "APPLE TEA",
+
+    "category": "Напої",
+
+    "description": "Зелений чай з кислинкою червоного яблука",
+
+    "flavors": [
+
+      "Green Tea",
+
+      "Red Apple"
+
+    ]
+
+  },
+
+  {
+
+    "name": "MELON TEA",
+
+    "category": "Напої",
+
+    "description": "Диня, зелений чай та легкий цитрусовий акцент",
+
+    "flavors": [
+
+      "Melon",
+
+      "Green Tea",
+
+      "Citrus"
+
+    ]
+
+  },
+
+  {
+
+    "name": "GRAPEFRUIT KIWI",
+
+    "category": "Фруктові",
+
+    "description": "Грейпфрут, ківі, алое та м'ятна прохолода",
+
+    "flavors": [
+
+      "Grapefruit",
+
+      "Kiwi",
+
+      "Aloe",
+
+      "Mint"
+
+    ]
+
+  },
+
+  {
+
+    "name": "COOLBERRY MIX",
+
+    "category": "Ягідні",
+
+    "description": "Лісові ягоди з яскравою прохолодою",
+
+    "flavors": [
+
+      "Blueberry",
+
+      "Blackberry",
+
+      "Raspberry",
+
+      "Cooling"
+
+    ]
+
+  },
+ {
+
+    "name": "PLUM LIME",
+
+    "category": "Фруктові",
+
+    "description": "Яскрава слива з лаймом, гранатовим сиропом та ноткою стиглої вишні",
+
+    "flavors": [
+
+      "Plum",
+
+      "Lime",
+
+      "Pomegranate",
+
+      "Cherry"
+
+    ]
+
+  },
+
+  {
+
+    "name": "LYCHEE GRAPEFRUIT",
+
+    "category": "Фруктові",
+
+    "description": "Ніжна груша та лічі з легкою кислинкою грейпфрута і ноткою яблука",
+
+    "flavors": [
+
+      "Pear",
+
+      "Lychee",
+
+      "Grapefruit",
+
+      "Apple"
+
+    ]
+
+  },
+
+  {
+
+    "name": "MOJITO GRAPE",
+
+    "category": "Напої",
+
+    "description": "Насичений виноград та класичний мохіто",
+
+    "flavors": [
+
+      "Grape",
+
+      "Mojito"
+
+    ]
+
+  },
+
+  {
+
+    "name": "STRAWBERRY BLUEBERRY",
+
+    "category": "Ягідні",
+
+    "description": "Полуниця, чорниця, збиті вершки та легкий лимонад",
+
+    "flavors": [
+
+      "Strawberry",
+
+      "Blueberry",
+
+      "Whipped Cream",
+
+      "Lemonade"
+
+    ]
+
+  },
+
+  {
+
+    "name": "PEACH MANGO",
+
+    "category": "Фруктові",
+
+    "description": "Ніжний персик та соковите манго",
+
+    "flavors": [
+
+      "Peach",
+
+      "Mango"
+
+    ]
+
+  },
+
+  {
+
+    "name": "STRAWBERRY KIWI",
+
+    "category": "Фруктові",
+
+    "description": "Ківі, полуниця та легкі вершкові нотки",
+
+    "flavors": [
+
+      "Strawberry",
+
+      "Kiwi",
+
+      "Cream"
+
+    ]
+
+  },
+    {
+
+    "name": "BLACK CURRANT",
+
+    "category": "Ягідні",
+
+    "description": "Насичена чорна смородина з легкою прохолодою",
+
+    "flavors": [
+
+      "Black Currant",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "ENERGY DRINK",
+
+    "category": "Напої",
+
+    "description": "Яскравий смак енергетичного напою з цитрусовими нотками",
+
+    "flavors": [
+
+      "Energy Drink",
+
+      "Citrus"
+
+    ]
+
+  },
+
+  {
+
+    "name": "PINEAPPLE COCONUT",
+
+    "category": "Фруктові",
+
+    "description": "Стиглий ананас з ніжним кокосом",
+
+    "flavors": [
+
+      "Pineapple",
+
+      "Coconut"
+
+    ]
+
+  },
+
+  {
+
+    "name": "BLUEBERRY MINT",
+
+    "category": "Ягідні",
+
+    "description": "Чорниця з освіжаючою м'ятою",
+
+    "flavors": [
+
+      "Blueberry",
+
+      "Mint"
+
+    ]
+
+  },
+
+  {
+
+    "name": "WATERMELON ICE",
+
+    "category": "Фруктові",
+
+    "description": "Соковитий кавун з холодком",
+
+    "flavors": [
+
+      "Watermelon",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "COLA LIME",
+
+    "category": "Напої",
+
+    "description": "Класична кола з лаймом",
+
+    "flavors": [
+
+      "Cola",
+
+      "Lime"
+
+    ]
+
+  },
+  {
+
+    "name": "APPLE PEAR",
+
+    "category": "Фруктові",
+
+    "description": "Соковите яблуко та солодка груша",
+
+    "flavors": [
+
+      "Apple",
+
+      "Pear"
+
+    ]
+
+  },
+
+  {
+
+    "name": "RASPBERRY LEMONADE",
+
+    "category": "Напої",
+
+    "description": "Освіжаючий лимонад зі стиглою малиною",
+
+    "flavors": [
+
+      "Raspberry",
+
+      "Lemonade"
+
+    ]
+
+  },
+
+  {
+
+    "name": "PEACH ICE",
+
+    "category": "Фруктові",
+
+    "description": "Солодкий персик з легкою прохолодою",
+
+    "flavors": [
+
+      "Peach",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "MANGO PASSION",
+
+    "category": "Фруктові",
+
+    "description": "Манго та маракуя з яскравим тропічним смаком",
+
+    "flavors": [
+
+      "Mango",
+
+      "Passion Fruit"
+
+    ]
+
+  },
+
+  {
+
+    "name": "CHERRY COLA",
+
+    "category": "Напої",
+
+    "description": "Класична кола з ароматною вишнею",
+
+    "flavors": [
+
+      "Cola",
+
+      "Cherry"
+
+    ]
+
+  },
+
+  {
+
+    "name": "FOREST BERRIES",
+
+    "category": "Ягідні",
+
+    "description": "Мікс лісових ягід із насиченим смаком",
+
+    "flavors": [
+
+      "Blueberry",
+
+      "Blackberry",
+
+      "Raspberry"
+
+    ]
+
+  },
+  {
+
+    "name": "RED APPLE",
+
+    "category": "Фруктові",
+
+    "description": "Солодке червоне яблуко",
+
+    "flavors": [
+
+      "Red Apple"
+
+    ]
+
+  },
+
+  {
+
+    "name": "LIME MINT",
+
+    "category": "Напої",
+
+    "description": "Лайм та свіжа м'ята",
+
+    "flavors": [
+
+      "Lime",
+
+      "Mint"
+
+    ]
+
+  },
+
+  {
+
+    "name": "BLUE ICE",
+
+    "category": "Ягідні",
+
+    "description": "Чорниця з потужною прохолодою",
+
+    "flavors": [
+
+      "Blueberry",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "PINEAPPLE MANGO",
+
+    "category": "Фруктові",
+
+    "description": "Ананас та стигле манго",
+
+    "flavors": [
+
+      "Pineapple",
+
+      "Mango"
+
+    ]
+
+  },
+
+  {
+
+    "name": "GRAPE ICE",
+
+    "category": "Фруктові",
+
+    "description": "Виноград із холодком",
+
+    "flavors": [
+
+      "Grape",
+
+      "Cooling"
+
+    ]
+
+  },
+
+  {
+
+    "name": "STRAWBERRY WATERMELON",
+
+    "category": "Фруктові",
+
+    "description": "Полуниця та соковитий кавун",
+
+    "flavors": [
+
+      "Strawberry",
+
+      "Watermelon"
+
+    ]
+
+  },
