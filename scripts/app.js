@@ -1043,7 +1043,17 @@ if(finishOrderButton){
         .value
 
         .trim();
+order.delivery.city =
 
+document.getElementById("novaCity")?.value.trim() || "";
+
+order.delivery.department =
+
+document.getElementById("novaDepartment")?.value.trim() || "";
+
+order.delivery.address =
+
+document.getElementById("taxiAddress")?.value.trim() || "";
         console.log(order);
 
 sendTelegramOrder();
