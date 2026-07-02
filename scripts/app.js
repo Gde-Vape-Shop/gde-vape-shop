@@ -1191,11 +1191,43 @@ ${order.customer.telegram || "-"}
 
 🚚 Доставка
 
-${order.delivery.type}
+${order.delivery.type === "pickup"
 
-🏪 Магазин
+? "Самовивіз"
 
-${order.delivery.shop || "-"}
+: order.delivery.type === "nova"
+
+? "Нова Пошта"
+
+: "Таксі"}
+
+${order.delivery.type === "pickup"
+
+? `🏪 Магазин
+
+${order.delivery.shop || "-"}`
+
+: ""}
+
+${order.delivery.type === "nova"
+
+? `🏙 Місто
+
+${order.delivery.city || "-"}
+
+📦 Відділення
+
+${order.delivery.department || "-"}`
+
+: ""}
+
+${order.delivery.type === "taxi"
+
+? `📍 Адреса
+
+${order.delivery.address || "-"}`
+
+: ""}
 
 📝 Коментар
 
