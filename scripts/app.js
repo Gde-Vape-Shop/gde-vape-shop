@@ -1101,19 +1101,47 @@ async function sendTelegramOrder(){
 
         let flavors = "";
 
-        if(liquid.flavors.length){
+if(liquid.recipeType === "recipe"){
 
-            liquid.flavors.forEach(flavor=>{
+    flavors = `🏷 Тип:
 
-                flavors += `• ${flavor.name} — ${flavor.percent}%\n`;
+Фірмовий рецепт GDE
 
-            });
+🍓 Смак:
 
-        }else{
+${liquid.recipe.name}`;
 
-            flavors = "Не вибрано\n";
+}else{
 
-        }
+    if(liquid.flavors.length){
+
+        liquid.flavors.forEach(flavor=>{
+
+            flavors += `• ${flavor.name} — ${flavor.percent}%\n`;
+
+        });
+
+    }else{
+
+        flavors = "Не вибрано";
+
+    }
+
+    flavors = `🏷 Тип:
+
+Власний мікс
+
+🍓 Смаки:
+
+${flavors}
+
+🍬 Солодкість: ${liquid.sweetness}/10
+
+🧊 Холод: ${liquid.cold}/10
+
+🍋 Кислинка: ${liquid.acid}/10`;
+
+}
 
         liquids +=
 
@@ -1127,15 +1155,7 @@ async function sendTelegramOrder(){
 
 💪 Міцність: ${liquid.strength} мг
 
-🍓 Смаки:
-
 ${flavors}
-
-🍬 Солодкість: ${liquid.sweetness}/10
-
-🧊 Холод: ${liquid.cold}/10
-
-🍋 Кислинка: ${liquid.acid}/10
 
 💵 Ціна: ${liquid.price} грн
 
