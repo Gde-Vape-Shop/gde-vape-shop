@@ -6,8 +6,6 @@ GDE VAPE SHOP
 
 STATE.JS
 
-Version 1.0
-
 ==========================================================
 
 */
@@ -19,6 +17,8 @@ const order = {
     currentLiquid: {
 
         nicotineType: null,
+
+        ratio: "70/30",
 
         volume: null,
 
@@ -90,6 +90,8 @@ function resetCurrentLiquid(){
 
         nicotineType: null,
 
+        ratio: "70/30",
+
         volume: null,
 
         strength: null,
@@ -114,7 +116,7 @@ function resetCurrentLiquid(){
 
 /* ==========================================================
 
-   COUNT
+   HELPERS
 
 ========================================================== */
 
