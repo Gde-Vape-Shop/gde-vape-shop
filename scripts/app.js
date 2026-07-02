@@ -1046,7 +1046,9 @@ if(finishOrderButton){
 
         console.log(order);
 
-        showScreen("screenSuccess");
+sendTelegramOrder();
+
+showScreen("screenSuccess");
 
     });
 
