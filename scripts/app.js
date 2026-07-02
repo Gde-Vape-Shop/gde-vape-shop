@@ -523,71 +523,7 @@ if(mixButton){
     });
 
 }
-/* ==========================================================
 
-   RECIPES
-
-========================================================== */
-
-function selectRecipe(recipe){
-
-    order.currentLiquid.recipe = recipe;
-
-    order.currentLiquid.flavors = [...recipe.flavors];
-
-    showScreen("screenSettings");
-
-}
-
-function renderRecipeCards(list){
-
-    const container =
-
-    document.getElementById("recipesContainer");
-
-    if(!container) return;
-
-    container.innerHTML = "";
-
-    list.forEach(recipe=>{
-
-        const card = document.createElement("div");
-
-        card.className = "recipeCard";
-
-        card.innerHTML = `
-
-            <h3>${recipe.name}</h3>
-
-            <p>${recipe.category}</p>
-
-            <button class="mainButton">
-
-                Обрати
-
-            </button>
-
-        `;
-
-        card.querySelector("button")
-
-        .addEventListener("click",()=>{
-
-            selectRecipe(recipe);
-
-        });
-
-        container.appendChild(card);
-
-    });
-
-}
-
-if(typeof recipes!=="undefined"){
-
-    renderRecipeCards(recipes);
-
-}
 /* ==========================================================
 
    CUSTOM MIX
