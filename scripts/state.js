@@ -6,11 +6,19 @@ GDE VAPE SHOP
 
 STATE.JS
 
+Version 2.0
+
 ==========================================================
 
 */
 
 "use strict";
+
+/* ==========================================================
+
+   ORDER
+
+========================================================== */
 
 const order = {
 
@@ -18,7 +26,7 @@ const order = {
 
         nicotineType: null,
 
-        ratio: "70/30",
+        ratio: null,
 
         volume: null,
 
@@ -36,7 +44,9 @@ const order = {
 
         acid: 5,
 
-        price: 0
+        price: 0,
+
+        isGift: false
 
     },
 
@@ -68,13 +78,21 @@ const order = {
 
         telegram: "",
 
-        comment: ""
+        comment: "",
+
+        orderNumber: ""
 
     },
 
     totalPrice: 0,
 
-    giftLiquid: false
+    giftAvailable: false,
+
+    giftLiquid: false,
+
+    editingLiquid: null,
+
+    isEditing: false
 
 };
 
@@ -90,7 +108,7 @@ function resetCurrentLiquid(){
 
         nicotineType: null,
 
-        ratio: "70/30",
+        ratio: null,
 
         volume: null,
 
@@ -108,7 +126,9 @@ function resetCurrentLiquid(){
 
         acid: 5,
 
-        price: 0
+        price: 0,
+
+        isGift: false
 
     };
 
@@ -123,5 +143,17 @@ function resetCurrentLiquid(){
 function liquidsCount(){
 
     return order.liquids.length;
+
+}
+
+function hasGiftAvailable(){
+
+    return order.giftAvailable;
+
+}
+
+function currentLiquid(){
+
+    return order.currentLiquid;
 
 }
