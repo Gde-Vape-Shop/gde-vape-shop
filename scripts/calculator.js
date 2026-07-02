@@ -6,15 +6,19 @@ GDE VAPE SHOP
 
 CALCULATOR.JS
 
+Version 2.0
+
 ==========================================================
 
 */
 
-/* ===============================
+"use strict";
 
-   БАЗОВІ ЦІНИ
+/* ==========================================================
 
-================================= */
+   PRICES
+
+========================================================== */
 
 const prices = {
 
@@ -44,134 +48,196 @@ const prices = {
 
 };
 
-/* ===============================
+/* ==========================================================
 
    ORGANIC
 
-================================= */
+========================================================== */
 
-function calculateOrganic(volume,strength){
+function calculateOrganicPrice(liquid){
 
-    let price = prices.organic[volume];
+    if(!liquid.volume){
 
-    if(strength<=0){
-
-        return price;
+        return 0;
 
     }
 
-    const nicotineMl = volume*(strength/100);
+    let price = prices.organic[liquid.volume];
 
-    const pouches = Math.ceil(nicotineMl/1.5);
+    if(liquid.strength>0){
 
-    return price + (pouches*12);
+        const nicotineMl =
+
+        liquid.volume *
+
+        (liquid.strength/100);
+
+        const boosters =
+
+        Math.ceil(nicotineMl/1.5);
+
+        price += boosters*12;
+
+    }
+
+    return price;
 
 }
 
-/* ===============================
+/* ==========================================================
 
    SALT
 
-================================= */
+========================================================== */
 
-function calculateSalt(volume,strength){
+function calculateSaltPrice(liquid){
 
-    let pouches=0;
+    if(!liquid.volume){
 
-    if(volume===15){
-
-        if(strength>0){
-
-            pouches=1;
-
-        }
+        return 0;
 
     }
 
-    if(volume===30){
+    let boosters = 0;
 
-        if(strength>=1 && strength<=3) pouches=1;
+    switch(liquid.volume){
 
-        else if(strength<=5) pouches=2;
+        case 15:
 
-        else pouches=3;
+            boosters =
+
+            liquid.strength>0 ? 1 : 0;
+
+            break;
+
+        case 30:
+
+            if(liquid.strength<=3){
+
+                boosters = 1;
+
+            }else if(liquid.strength<=5){
+
+                boosters = 2;
+
+            }else{
+
+                boosters = 3;
+
+            }
+
+            break;
+
+        case 60:
+
+            if(liquid.strength<=2){
+
+                boosters = 1;
+
+            }else if(liquid.strength===3){
+
+                boosters = 2;
+
+            }else if(liquid.strength===4){
+
+                boosters = 3;
+
+            }else if(liquid.strength===5){
+
+                boosters = 4;
+
+            }else{
+
+                boosters = 5;
+
+            }
+
+            break;
+
+        case 115:
+
+            if(liquid.strength<=2){
+
+                boosters = 2;
+
+            }else if(liquid.strength===3){
+
+                boosters = 4;
+
+            }else if(liquid.strength===4){
+
+                boosters = 6;
+
+            }else if(liquid.strength===5){
+
+                boosters = 8;
+
+            }else{
+
+                boosters = 10;
+
+            }
+
+            break;
 
     }
 
-    if(volume===60){
+    return prices.salt[liquid.volume] +
 
-        if(strength<=2) pouches=1;
-
-        else if(strength===3) pouches=2;
-
-        else if(strength===4) pouches=3;
-
-        else if(strength===5) pouches=4;
-
-        else pouches=5;
-
-    }
-
-    if(volume===115){
-
-        if(strength<=2) pouches=2;
-
-        else if(strength===3) pouches=4;
-
-        else if(strength===4) pouches=6;
-
-        else if(strength===5) pouches=8;
-
-        else pouches=10;
-
-    }
-
-    return prices.salt[volume] + (pouches*25);
+    boosters*25;
 
 }
+/* ==========================================================
 
-/* ===============================
+   CURRENT LIQUID
 
-   ГОЛОВНИЙ РОЗРАХУНОК
-
-================================= */
+========================================================== */
 
 function calculateCurrentLiquid(){
 
     const liquid = order.currentLiquid;
 
-    if(liquid.nicotineType==="organic"){
+    if(!liquid.nicotineType){
 
-        liquid.price = calculateOrganic(
+        liquid.price = 0;
 
-            liquid.volume,
-
-            liquid.strength
-
-        );
+        return 0;
 
     }
 
-    if(liquid.nicotineType==="salt"){
+    switch(liquid.nicotineType){
 
-        liquid.price = calculateSalt(
+        case "organic":
 
-            liquid.volume,
+            liquid.price =
 
-            liquid.strength
+            calculateOrganicPrice(liquid);
 
-        );
+            break;
+
+        case "salt":
+
+            liquid.price =
+
+            calculateSaltPrice(liquid);
+
+            break;
+
+        default:
+
+            liquid.price = 0;
 
     }
 
     return liquid.price;
 
 }
-/* ===============================
 
-   TOTAL PRICE
+/* ==========================================================
 
-================================= */
+   TOTAL
+
+========================================================== */
 
 function updateTotalPrice(){
 
@@ -185,37 +251,40 @@ function updateTotalPrice(){
 
     order.totalPrice = total;
 
+    order.giftAvailable =
+
+        order.liquids.filter(liquid=>!liquid.isGift).length >= 4;
+
     return total;
 
 }
 
-/* ===============================
+/* ==========================================================
 
-   GIFT PROGRESS
+   GIFT
 
-================================= */
+========================================================== */
 
 function giftProgress(){
 
-    const count = order.liquids.length;
+    const paidLiquids =
 
-    const left = 4 - (count % 5);
+    order.liquids.filter(liquid=>!liquid.isGift).length;
 
-    if(left===5){
+    if(paidLiquids>=4){
 
         return 0;
 
     }
 
-    return left;
+    return 4-paidLiquids;
 
 }
-
-/* ===============================
+/* ==========================================================
 
    ADD LIQUID
 
-================================= */
+========================================================== */
 
 function addLiquidToOrder(){
 
@@ -227,9 +296,9 @@ function addLiquidToOrder(){
 
     if(order.giftLiquid){
 
-        liquid.price = 0;
-
         liquid.isGift = true;
+
+        liquid.price = 0;
 
         order.giftLiquid = false;
 
@@ -240,13 +309,54 @@ function addLiquidToOrder(){
     updateTotalPrice();
 
 }
-/* ===============================
+
+/* ==========================================================
+
+   UPDATE LIQUID
+
+========================================================== */
+
+function updateLiquid(index){
+
+    if(index < 0 || index >= order.liquids.length){
+
+        return;
+
+    }
+
+    const liquid = JSON.parse(
+
+        JSON.stringify(order.currentLiquid)
+
+    );
+
+    if(order.liquids[index].isGift){
+
+        liquid.isGift = true;
+
+        liquid.price = 0;
+
+    }
+
+    order.liquids[index] = liquid;
+
+    updateTotalPrice();
+
+}
+
+/* ==========================================================
 
    REMOVE LIQUID
 
-================================= */
+========================================================== */
 
 function removeLiquid(index){
+
+    if(index < 0 || index >= order.liquids.length){
+
+        return;
+
+    }
 
     order.liquids.splice(index,1);
 
@@ -254,16 +364,50 @@ function removeLiquid(index){
 
 }
 
-/* ===============================
+/* ==========================================================
 
    CLEAR ORDER
 
-================================= */
+========================================================== */
 
 function clearOrder(){
 
-    order.liquids=[];
+    order.liquids = [];
 
-    order.totalPrice=0;
+    order.totalPrice = 0;
+
+    order.giftAvailable = false;
+
+    order.giftLiquid = false;
+
+    order.editingLiquid = null;
+
+    order.isEditing = false;
+
+    resetCurrentLiquid();
+
+}
+
+/* ==========================================================
+
+   HELPERS
+
+========================================================== */
+
+function getLiquidPrice(liquid){
+
+    return liquid.isGift ? 0 : liquid.price;
+
+}
+
+function liquidsTotal(){
+
+    return order.liquids.length;
+
+}
+
+function paidLiquidsTotal(){
+
+    return order.liquids.filter(liquid => !liquid.isGift).length;
 
 }
