@@ -146,7 +146,7 @@ function nextScreen(){
 
             if(!order.currentLiquid.ratio){
 
-                alert("Оберіть співвідношення.");
+                alert("Оберіть співвідношення VG/PG.");
 
                 return;
 
@@ -181,6 +181,66 @@ function nextScreen(){
             }
 
             showScreen("screenType");
+
+            break;
+
+        case "screenRecipes":
+
+            if(!order.currentLiquid.recipe){
+
+                alert("Оберіть рецепт.");
+
+                return;
+
+            }
+
+            showScreen("screenSettings");
+
+            break;
+
+        case "screenCustomMix":
+
+            if(order.currentLiquid.flavors.length===0){
+
+                alert("Додайте хоча б один смак.");
+
+                return;
+
+            }
+
+            showScreen("screenSettings");
+
+            break;
+
+        case "screenSettings":
+
+            addCurrentLiquid();
+
+            break;
+
+        case "screenCart":
+
+            showScreen("screenDelivery");
+
+            break;
+
+        case "screenDelivery":
+
+            showScreen("screenContact");
+
+            break;
+
+        case "screenContact":
+
+            document
+
+                .getElementById("finishOrder")
+
+                .click();
+
+            break;
+
+        default:
 
             break;
 
