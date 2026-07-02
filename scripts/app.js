@@ -335,6 +335,12 @@ function previousScreen(){
 
             break;
 
+        case "screenSuccess":
+
+            showScreen("screenHome");
+
+            break;
+
         default:
 
             showScreen("screenHome");
