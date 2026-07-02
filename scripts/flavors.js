@@ -6,7 +6,7 @@ GDE VAPE SHOP
 
 FLAVORS.JS
 
-Version 2.0
+Version 3.0
 
 ==========================================================
 
@@ -14,7 +14,29 @@ Version 2.0
 
 "use strict";
 
+/* ==========================================================
+
+   DATA
+
+========================================================== */
+
 let flavors = [];
+
+const selectedFlavorsContainer =
+
+document.getElementById("selectedFlavors");
+
+const flavorsContainer =
+
+document.getElementById("flavorsList");
+
+const flavorSearch =
+
+document.getElementById("flavorSearch");
+
+const addFlavorButton =
+
+document.getElementById("addFlavor");
 
 /* ==========================================================
 
@@ -26,9 +48,13 @@ async function loadFlavors(){
 
     try{
 
-        const response = await fetch("data/flavors.json");
+        const response =
 
-        flavors = await response.json();
+        await fetch("data/flavors.json");
+
+        flavors =
+
+        await response.json();
 
         renderFlavors(flavors);
 
@@ -36,27 +62,28 @@ async function loadFlavors(){
 
     catch(error){
 
-        console.error("Flavors loading error:", error);
+        console.error(
+
+            "Flavors loading error:",
+
+            error
+
+        );
 
     }
 
 }
-
 /* ==========================================================
 
-   RENDER
+   RENDER FLAVORS
 
 ========================================================== */
 
 function renderFlavors(list){
 
-    const container =
+    if(!flavorsContainer) return;
 
-    document.getElementById("flavorsList");
-
-    if(!container) return;
-
-    container.innerHTML = "";
+    flavorsContainer.innerHTML = "";
 
     list.forEach(flavor=>{
 
@@ -90,12 +117,196 @@ function renderFlavors(list){
 
         });
 
-        container.appendChild(card);
+        flavorsContainer.appendChild(card);
 
     });
 
 }
+/* ==========================================================
 
+   CATEGORIES
+
+========================================================== */
+
+const categoryButtons =
+
+document.querySelectorAll(
+
+    ".flavorCategories .category"
+
+);
+
+categoryButtons.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        categoryButtons.forEach(item=>{
+
+            item.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+        const category =
+
+        button.textContent.trim();
+
+        if(category==="Усі"){
+
+            filterFlavors();
+
+            return;
+
+        }
+
+        const filtered =
+
+        flavors.filter(flavor=>
+
+            flavor.category===category
+
+        );
+
+        filterFlavors();
+
+    });
+
+});
+/* ==========================================================
+
+   SEARCH
+
+========================================================== */
+
+if(flavorSearch){
+
+    flavorSearch.addEventListener("input",filterFlavors);
+
+}
+
+function filterFlavors(){
+
+    let filtered = [...flavors];
+
+    const activeCategory =
+
+    document.querySelector(
+
+        ".flavorCategories .category.active"
+
+    );
+
+    if(activeCategory){
+
+        const category =
+
+        activeCategory.textContent.trim();
+
+        if(category!=="Усі"){
+
+            filtered =
+
+            filtered.filter(flavor=>
+
+                flavor.category===category
+
+            );
+
+        }
+
+    }
+
+    const value =
+
+    flavorSearch.value
+
+    .trim()
+
+    .toLowerCase();
+
+    if(value){
+
+        filtered =
+
+        filtered.filter(flavor=>
+
+            flavor.name
+
+            .toLowerCase()
+
+            .includes(value)
+
+        );
+
+    }
+
+    renderFlavors(filtered);
+
+}
+/* ==========================================================
+
+   SELECTED FLAVORS
+
+========================================================== */
+
+function renderSelectedFlavors(){
+
+    if(!selectedFlavorsContainer) return;
+
+    selectedFlavorsContainer.innerHTML = "";
+
+    order.currentLiquid.flavors.forEach((flavor,index)=>{
+
+        const card = document.createElement("div");
+
+        card.className = "selectedFlavor";
+
+        card.innerHTML = `
+
+            <div class="selectedFlavorTop">
+
+                <strong>${flavor.name}</strong>
+
+                <button
+
+                    class="removeFlavor"
+
+                    data-index="${index}">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+            <div class="selectedFlavorPercent">
+
+                ${flavor.percent || 0}%
+
+            </div>
+
+        `;
+
+        card
+
+        .querySelector(".removeFlavor")
+
+        .addEventListener("click",()=>{
+
+            order.currentLiquid.flavors.splice(index,1);
+
+            renderSelectedFlavors();
+
+            updateCart();
+
+        });
+
+        selectedFlavorsContainer.appendChild(card);
+
+    });
+
+}
 /* ==========================================================
 
    ADD FLAVOR
@@ -112,7 +323,7 @@ function addFlavor(flavor){
 
     }
 
-    const exists =
+    const exists=
 
     order.currentLiquid.flavors.some(item=>
 
@@ -136,11 +347,7 @@ function addFlavor(flavor){
 
     });
 
-    if(typeof renderSelectedFlavors==="function"){
-
-        renderSelectedFlavors();
-
-    }
+    renderSelectedFlavors();
 
     updateCart();
 
@@ -148,39 +355,23 @@ function addFlavor(flavor){
 
 /* ==========================================================
 
-   SEARCH
+   CONTINUE
 
 ========================================================== */
 
-const flavorSearch =
+if(addFlavorButton){
 
-document.getElementById("flavorSearch");
+    addFlavorButton.addEventListener("click",()=>{
 
-if(flavorSearch){
+        if(order.currentLiquid.flavors.length===0){
 
-    flavorSearch.addEventListener("input",()=>{
+            alert("Оберіть хоча б один смак.");
 
-        const value =
+            return;
 
-        flavorSearch.value
+        }
 
-        .trim()
-
-        .toLowerCase();
-
-        const filtered =
-
-        flavors.filter(flavor=>
-
-            flavor.name
-
-            .toLowerCase()
-
-            .includes(value)
-
-        );
-
-        renderFlavors(filtered);
+        showScreen("screenSettings");
 
     });
 
