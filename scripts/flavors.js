@@ -319,7 +319,19 @@ slider.addEventListener("input", () => {
 
     }
 
-    renderSelectedFlavors();
+    percent.textContent = flavor.percent + "%";
+
+    document.querySelectorAll(".flavorSlider").forEach((item,index)=>{
+
+        item.value = order.currentLiquid.flavors[index].percent;
+
+    });
+
+    document.querySelectorAll(".selectedFlavorPercent").forEach((item,index)=>{
+
+        item.textContent = order.currentLiquid.flavors[index].percent + "%";
+
+    });
 
 });
         card
