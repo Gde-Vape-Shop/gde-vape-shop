@@ -94,17 +94,31 @@ function showScreen(index){
 
 ========================================================== */
 
-function nextScreen(){
+function nextScreen() {
 
-    switch(currentScreen){
+    switch (currentScreen) {
+
+        case 0:
+
+            showScreen(1);
+
+            break;
 
         case 1:
 
-            if(order.currentLiquid.nicotineType==="organic"){
+            if (!order.currentLiquid.nicotineType) {
+
+                alert("Оберіть основу.");
+
+                return;
+
+            }
+
+            if (order.currentLiquid.nicotineType === "organic") {
 
                 showScreen(2);
 
-            }else{
+            } else {
 
                 showScreen(3);
 
@@ -120,19 +134,33 @@ function nextScreen(){
 
         case 3:
 
+            if (!order.currentLiquid.volume) {
+
+                alert("Оберіть об'єм.");
+
+                return;
+
+            }
+
             showScreen(4);
 
             break;
 
         case 4:
 
+            if (order.currentLiquid.strength === null) {
+
+                alert("Оберіть міцність.");
+
+                return;
+
+            }
+
             showScreen(5);
 
             break;
 
         case 5:
-
-            showScreen(6);
 
             break;
 
@@ -150,44 +178,47 @@ function nextScreen(){
 
         case 8:
 
+            if (!order.delivery.type) {
+
+                alert("Оберіть спосіб доставки.");
+
+                return;
+
+            }
+
             showScreen(9);
 
             break;
 
         case 9:
 
-            if(order.delivery.type==="pickup"){
+            const name =
 
-                finishOrderButton.click();
+                document.getElementById("customerName").value.trim();
 
-            }else{
+            const phone =
 
-                const name=document.getElementById("customerName")?.value.trim();
+                document.getElementById("customerPhone").value.trim();
 
-                const phone=document.getElementById("customerPhone")?.value.trim();
+            if (!name || !phone) {
 
-                if(!name || !phone){
+                alert("Введіть ім'я та телефон.");
 
-                    alert("Введіть ім'я та номер телефону");
-
-                    return;
-
-                }
-
-                finishOrderButton.click();
+                return;
 
             }
+
+            finishOrderButton.click();
 
             break;
 
         default:
 
-            showScreen(currentScreen+1);
+            showScreen(currentScreen + 1);
 
     }
 
 }
-
 /* ==========================================================
 
    BACK
@@ -206,9 +237,9 @@ function previousScreen(){
 
 ========================================================== */
 
-if(startButton){
+if (startButton) {
 
-    startButton.addEventListener("click",()=>{
+    startButton.addEventListener("click", () => {
 
         showScreen(1);
 
@@ -216,27 +247,25 @@ if(startButton){
 
 }
 
-nextButtons.forEach(button=>{
+nextButtons.forEach(button => {
 
-    button.addEventListener("click",()=>{
-
-        
-
-        }
-
-    });
-
-});
-
-backButtons.forEach(button=>{
-
-    button.addEventListener("click",()=>{
+    button.addEventListener("click", () => {
 
         nextScreen();
+
     });
 
 });
 
+backButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        previousScreen();
+
+    });
+
+});
 /* ==========================================================
 
    NICOTINE
