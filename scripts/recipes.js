@@ -6,6 +6,8 @@ GDE VAPE SHOP
 
 RECIPES.JS
 
+Version 2.0
+
 ==========================================================
 
 */
@@ -14,11 +16,11 @@ RECIPES.JS
 
 let recipes = [];
 
-/* ==========================================
+/* ==========================================================
 
-   Завантаження рецептів
+   LOAD RECIPES
 
-========================================== */
+========================================================== */
 
 async function loadRecipes(){
 
@@ -28,23 +30,47 @@ async function loadRecipes(){
 
         recipes = await response.json();
 
-        renderRecipes(recipes);
+        renderRecipeCards(recipes);
 
-    }catch(error){
+    }
 
-        console.error("Не вдалося завантажити рецепти", error);
+    catch(error){
+
+        console.error("Recipes loading error:", error);
 
     }
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Відображення рецептів
+   SELECT RECIPE
 
-========================================== */
+========================================================== */
 
-function renderRecipes(list){
+function selectRecipe(recipe){
+
+    order.currentLiquid.recipe = recipe;
+
+    order.currentLiquid.recipeType = "recipe";
+
+    order.currentLiquid.flavors = [...recipe.flavors];
+
+    calculateCurrentLiquid();
+
+    updateCart();
+
+    showScreen("screenSettings");
+
+}
+
+/* ==========================================================
+
+   RENDER
+
+========================================================== */
+
+function renderRecipeCards(list){
 
     const container =
 
@@ -96,9 +122,7 @@ function renderRecipes(list){
 
         .addEventListener("click",()=>{
 
-            order.currentLiquid.recipe = recipe;
-
-            showScreen(7);
+            selectRecipe(recipe);
 
         });
 
@@ -108,11 +132,11 @@ function renderRecipes(list){
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Пошук
+   SEARCH
 
-========================================== */
+========================================================== */
 
 const recipeSearch =
 
@@ -124,7 +148,11 @@ if(recipeSearch){
 
         const value =
 
-        recipeSearch.value.toLowerCase();
+        recipeSearch.value
+
+        .trim()
+
+        .toLowerCase();
 
         const filtered =
 
@@ -138,16 +166,16 @@ if(recipeSearch){
 
         );
 
-        renderRecipes(filtered);
+        renderRecipeCards(filtered);
 
     });
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Старт
+   INIT
 
-========================================== */
+========================================================== */
 
 loadRecipes();
