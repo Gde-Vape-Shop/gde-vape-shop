@@ -311,7 +311,15 @@ slider.addEventListener("input", () => {
 
     flavor.percent = Number(slider.value);
 
-    percent.textContent = slider.value + "%";
+    if(order.currentLiquid.flavors.length===2){
+
+        const second = order.currentLiquid.flavors.find(item=>item!==flavor);
+
+        second.percent = 100 - flavor.percent;
+
+    }
+
+    renderSelectedFlavors();
 
 });
         card
