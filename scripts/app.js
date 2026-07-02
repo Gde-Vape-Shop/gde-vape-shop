@@ -1064,25 +1064,29 @@ if(giftButton){
 
         order.giftLiquid = true;
 
-const lastLiquid = order.liquids[order.liquids.length - 1];
+        const lastLiquid = order.liquids[order.liquids.length - 1];
 
-resetCurrentLiquid();
+        resetCurrentLiquid();
 
-order.currentLiquid.nicotineType = lastLiquid.nicotineType;
+        order.currentLiquid.nicotineType = lastLiquid.nicotineType;
 
-order.currentLiquid.volume = lastLiquid.volume;
+        order.currentLiquid.volume = lastLiquid.volume;
 
-order.currentLiquid.strength = lastLiquid.strength;
+        order.currentLiquid.strength = lastLiquid.strength;
 
-order.currentLiquid.ratio = lastLiquid.ratio;
+        order.currentLiquid.ratio = lastLiquid.ratio;
 
-renderStrengths();
+        renderStrengths();
 
-renderSelectedFlavors();
+        renderSelectedFlavors();
 
-updateSliderLabels();
+        updateSliderLabels();
 
-showScreen("screenType");
+        showScreen("screenType");
+
+    });
+
+}
 /* ==========================================================
 
    INIT
