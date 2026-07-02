@@ -6,6 +6,8 @@ GDE VAPE SHOP
 
 FLAVORS.JS
 
+Version 2.0
+
 ==========================================================
 
 */
@@ -14,11 +16,11 @@ FLAVORS.JS
 
 let flavors = [];
 
-/* ==========================================
+/* ==========================================================
 
-   Завантаження смаків
+   LOAD
 
-========================================== */
+========================================================== */
 
 async function loadFlavors(){
 
@@ -30,19 +32,21 @@ async function loadFlavors(){
 
         renderFlavors(flavors);
 
-    }catch(error){
+    }
 
-        console.error("Помилка завантаження смаків", error);
+    catch(error){
+
+        console.error("Flavors loading error:", error);
 
     }
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Відображення
+   RENDER
 
-========================================== */
+========================================================== */
 
 function renderFlavors(list){
 
@@ -52,15 +56,15 @@ function renderFlavors(list){
 
     if(!container) return;
 
-    container.innerHTML="";
+    container.innerHTML = "";
 
     list.forEach(flavor=>{
 
-        const card=document.createElement("div");
+        const card = document.createElement("div");
 
-        card.className="flavorCard";
+        card.className = "flavorCard";
 
-        card.innerHTML=`
+        card.innerHTML = `
 
             <div class="recipeTop">
 
@@ -92,17 +96,33 @@ function renderFlavors(list){
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Додати смак
+   ADD FLAVOR
 
-========================================== */
+========================================================== */
 
 function addFlavor(flavor){
 
     if(order.currentLiquid.flavors.length>=5){
 
-        alert("Максимум 5 смаків");
+        alert("Максимум 5 смаків.");
+
+        return;
+
+    }
+
+    const exists =
+
+    order.currentLiquid.flavors.some(item=>
+
+        item.name===flavor.name
+
+    );
+
+    if(exists){
+
+        alert("Цей смак вже доданий.");
 
         return;
 
@@ -110,21 +130,27 @@ function addFlavor(flavor){
 
     order.currentLiquid.flavors.push({
 
-        name:flavor.name,
+        name: flavor.name,
 
-        percent:0
+        percent: 0
 
     });
 
-    console.log(order.currentLiquid.flavors);
+    if(typeof renderSelectedFlavors==="function"){
+
+        renderSelectedFlavors();
+
+    }
+
+    updateCart();
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Пошук
+   SEARCH
 
-========================================== */
+========================================================== */
 
 const flavorSearch =
 
@@ -134,11 +160,15 @@ if(flavorSearch){
 
     flavorSearch.addEventListener("input",()=>{
 
-        const value=
+        const value =
 
-        flavorSearch.value.toLowerCase();
+        flavorSearch.value
 
-        const filtered=
+        .trim()
+
+        .toLowerCase();
+
+        const filtered =
 
         flavors.filter(flavor=>
 
@@ -156,10 +186,10 @@ if(flavorSearch){
 
 }
 
-/* ==========================================
+/* ==========================================================
 
-   Старт
+   INIT
 
-========================================== */
+========================================================== */
 
 loadFlavors();
