@@ -1093,7 +1093,7 @@ async function sendTelegramOrder(){
 
     const TOKEN = "8625777459:AAECzFk_rr6qFhNjoRRNbY3hPUZVnLpza7Y";
 
-    const CHAT_ID = "508387820";
+    const CHAT_ID = "-1003936591067";
 
     let liquids = "";
 
