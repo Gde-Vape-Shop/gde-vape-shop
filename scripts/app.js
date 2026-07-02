@@ -79,7 +79,9 @@ document.getElementById("giftCounter");
 const finishOrderButton =
 
 document.getElementById("finishOrder");
+const addAnotherLiquidButton =
 
+document.getElementById("addAnotherLiquid");
 /* ==========================================================
 
    SCREEN
@@ -364,7 +366,33 @@ if(startButton){
     });
 
 }
+if(addAnotherLiquidButton){
 
+    addAnotherLiquidButton.addEventListener("click",()=>{
+
+        resetCurrentLiquid();
+
+        renderStrengths();
+
+        renderSelectedFlavors();
+
+        document
+
+            .querySelectorAll(".selectCard.active")
+
+            .forEach(card=>{
+
+                card.classList.remove("active");
+
+            });
+
+        updateSliderLabels();
+
+        showScreen("screenBase");
+
+    });
+
+}
 nextButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
