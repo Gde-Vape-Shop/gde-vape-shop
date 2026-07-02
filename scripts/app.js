@@ -1099,17 +1099,45 @@ async function sendTelegramOrder(){
 
     order.liquids.forEach((liquid,index)=>{
 
+        let flavors = "";
+
+        if(liquid.flavors.length){
+
+            liquid.flavors.forEach(flavor=>{
+
+                flavors += `• ${flavor.name} — ${flavor.percent}%\n`;
+
+            });
+
+        }else{
+
+            flavors = "Не вибрано\n";
+
+        }
+
         liquids +=
 
-`🧪 ${index + 1}
+`━━━━━━━━━━━━━━━━━━━━━━
 
-Основа: ${liquid.nicotineType}
+🧪 РІДИНА №${index+1}
 
-Об'єм: ${liquid.volume} мл
+🧂 Основа: ${liquid.nicotineType}
 
-Міцність: ${liquid.strength} мг
+📦 Об'єм: ${liquid.volume} мл
 
-Ціна: ${liquid.price} грн
+💪 Міцність: ${liquid.strength} мг
+
+🍓 Смаки:
+
+${flavors}
+
+🍬 Солодкість: ${liquid.sweetness}/10
+
+🧊 Холод: ${liquid.cold}/10
+
+🍋 Кислинка: ${liquid.acid}/10
+
+💵 Ціна: ${liquid.price} грн
 
 `;
 
@@ -1119,25 +1147,41 @@ async function sendTelegramOrder(){
 
 `🔥 НОВЕ ЗАМОВЛЕННЯ
 
-👤 ${order.customer.name}
+👤 Клієнт
 
-📞 ${order.customer.phone}
+${order.customer.name}
 
-💬 Telegram: ${order.customer.telegram || "-"}
+📞 Телефон
 
-🚚 Доставка: ${order.delivery.type}
+${order.customer.phone}
 
-📝 Коментар:
+💬 Telegram
+
+${order.customer.telegram || "-"}
+
+🚚 Доставка
+
+${order.delivery.type}
+
+🏪 Магазин
+
+${order.delivery.shop || "-"}
+
+📝 Коментар
 
 ${order.customer.comment || "-"}
 
------------------------
+${order.giftLiquid ? "\n🎁 ПОДАРУНКОВА РІДИНА\n" : ""}
 
 ${liquids}
 
-💰 Сума: ${order.totalPrice} грн`;
+━━━━━━━━━━━━━━━━━━━━━━
 
-    return fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
+💰 ЗАГАЛЬНА СУМА
+
+${order.totalPrice} грн`;
+
+    await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
 
         method:"POST",
 
