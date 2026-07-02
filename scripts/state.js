@@ -6,7 +6,7 @@ GDE VAPE SHOP
 
 STATE.JS
 
-Version 2.0
+Version 3.0
 
 ==========================================================
 
@@ -16,13 +16,13 @@ Version 2.0
 
 /* ==========================================================
 
-   ORDER
+   DEFAULT LIQUID
 
 ========================================================== */
 
-const order = {
+function createEmptyLiquid(){
 
-    currentLiquid: {
+    return{
 
         nicotineType: null,
 
@@ -44,27 +44,42 @@ const order = {
 
         acid: 5,
 
-        price: 0,
+        price: 0
 
-        isGift: false
+    };
 
-    },
+}
+/* ==========================================================
+
+   ORDER
+
+========================================================== */
+
+const order = {
 
     liquids: [],
+
+    currentLiquid: createEmptyLiquid(),
+
+    totalPrice: 0,
+
+    giftLiquid: false,
+
+    isEditing: false,
+
+    editingLiquid: null,
 
     delivery: {
 
         type: null,
 
-        shop: "",
+        shop: null,
 
         city: "",
 
-        branch: "",
+        department: "",
 
-        address: "",
-
-        payment: ""
+        address: ""
 
     },
 
@@ -72,88 +87,57 @@ const order = {
 
         name: "",
 
-        surname: "",
-
         phone: "",
 
         telegram: "",
 
-        comment: "",
+        comment: ""
 
-        orderNumber: ""
-
-    },
-
-    totalPrice: 0,
-
-    giftAvailable: false,
-
-    giftLiquid: false,
-
-    editingLiquid: null,
-
-    isEditing: false
+    }
 
 };
-
 /* ==========================================================
 
-   RESET CURRENT LIQUID
+   FUNCTIONS
 
 ========================================================== */
 
 function resetCurrentLiquid(){
 
-    order.currentLiquid = {
+    order.currentLiquid = createEmptyLiquid();
 
-        nicotineType: null,
+}
 
-        ratio: null,
+function addLiquidToOrder(){
 
-        volume: null,
+    order.liquids.push({
 
-        strength: null,
+        ...order.currentLiquid,
 
-        recipeType: null,
+        flavors: [...order.currentLiquid.flavors]
 
-        recipe: null,
+    });
 
-        flavors: [],
+}
 
-        sweetness: 5,
+function updateLiquid(index){
 
-        cold: 5,
+    if(index===null || index===undefined) return;
 
-        acid: 5,
+    order.liquids[index] = {
 
-        price: 0,
+        ...order.currentLiquid,
 
-        isGift: false
+        flavors: [...order.currentLiquid.flavors]
 
     };
 
 }
 
-/* ==========================================================
+function giftProgress(){
 
-   HELPERS
+    const count = order.liquids.length % 5;
 
-========================================================== */
-
-function liquidsCount(){
-
-    return order.liquids.length;
-
-}
-
-function hasGiftAvailable(){
-
-    return order.giftAvailable;
-
-}
-
-function currentLiquid(){
-
-    return order.currentLiquid;
+    return count===4 ? 0 : 4-count;
 
 }
