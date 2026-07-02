@@ -266,28 +266,54 @@ function renderSelectedFlavors(){
 
             <div class="selectedFlavorTop">
 
-                <strong>${flavor.name}</strong>
+    <strong>${flavor.name}</strong>
 
-                <button
+    <button
 
-                    class="removeFlavor"
+        class="removeFlavor"
 
-                    data-index="${index}">
+        data-index="${index}">
 
-                    ✕
+        ✕
 
-                </button>
+    </button>
 
-            </div>
+</div>
 
-            <div class="selectedFlavorPercent">
+<input
 
-                ${flavor.percent || 0}%
+    type="range"
 
-            </div>
+    min="0"
+
+    max="100"
+
+    value="${flavor.percent || 0}"
+
+    class="flavorSlider"
+
+    data-index="${index}"
+
+>
+
+<div class="selectedFlavorPercent">
+
+    ${flavor.percent || 0}%
+
+</div>
 
         `;
+const slider = card.querySelector(".flavorSlider");
 
+const percent = card.querySelector(".selectedFlavorPercent");
+
+slider.addEventListener("input", () => {
+
+    flavor.percent = Number(slider.value);
+
+    percent.textContent = slider.value + "%";
+
+});
         card
 
         .querySelector(".removeFlavor")
